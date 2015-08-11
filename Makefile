@@ -239,6 +239,11 @@ export	HOSTARCH HOSTOS
 # set default to nothing for native builds
 ifeq ($(HOSTARCH),$(ARCH))
 CROSS_COMPILE ?=
+else
+TOPDIR  := $(shell /bin/pwd)
+ARM_SRC_ROOT := $(TOPDIR)/..
+TOOLCHAIN_PREFIX := asdk64-4.9.3-a53-EL-3.10-g2.19-a64nt-150615
+CROSS_COMPILE = $(ARM_SRC_ROOT)/$(TOOLCHAIN_PREFIX)/bin/asdk64-linux-
 endif
 
 KCONFIG_CONFIG	?= .config
