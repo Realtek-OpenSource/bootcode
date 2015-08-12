@@ -4,7 +4,7 @@
 # for more details.
 #
 # Copyright (C) 2015 by Tom Ting <tom_ting@realtek.com>
-# 
+#
 
 obj-y  += clock.o
 obj-y  += timer.o

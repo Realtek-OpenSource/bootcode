@@ -23,6 +23,6 @@ config SYS_BOARD
 
 config SYS_CONFIG_NAME
 	default "rtd1295_fpga" if BOARD_FPGA
-	
+
 
 endif #TARGET_RTD1295

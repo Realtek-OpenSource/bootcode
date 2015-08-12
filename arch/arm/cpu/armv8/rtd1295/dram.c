@@ -11,7 +11,7 @@
 #include <asm/io.h>
 #include <rtk/rtk_type.h>
 
-#define DC_SECURE_MISC_reg		0x18008740
+#define DC_SECURE_MISC_reg		0x98008740
 
 DECLARE_GLOBAL_DATA_PTR;
 
@@ -65,7 +65,7 @@ unsigned int get_accessible_ddr_size(int unit)
 	}
 	dc_mem_density_size /=8;
 
- 	if(unit == UNIT_MEGABYTE)
+	if(unit == UNIT_MEGABYTE)
 		return dc_mem_density_size ;
 	else
 		return dc_mem_density_size* 0x100000;
@@ -73,7 +73,7 @@ unsigned int get_accessible_ddr_size(int unit)
 
 /**
  * @brief dram_init_banksize
- * 
+ *
  * @return 0
  */
 void dram_init_banksize(void)

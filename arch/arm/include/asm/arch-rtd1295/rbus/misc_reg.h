@@ -13,9 +13,9 @@
 #ifndef _MIS_REG_H_INCLUDED_
 #define _MIS_REG_H_INCLUDED_
 
-#define TC0TVR                                                                       0x1801B500
-#define TC0TVR_reg_addr                                                              "0x1801B500"
-#define TC0TVR_reg                                                                   0x1801B500
+#define TC0TVR                                                                       0x9801B500
+#define TC0TVR_reg_addr                                                              "0x9801B500"
+#define TC0TVR_reg                                                                   0x9801B500
 #define set_TC0TVR_reg(data)   (*((volatile unsigned int*) TC0TVR_reg)=data)
 #define get_TC0TVR_reg   (*((volatile unsigned int*) TC0TVR_reg))
 #define TC0TVR_inst_adr                                                              "0x0040"
@@ -27,9 +27,9 @@
 #define TC0TVR_get_TC0TVR(data)                                                      ((0xFFFFFFFF&(data))>>0)
 
 
-#define TC1TVR                                                                       0x1801B504
-#define TC1TVR_reg_addr                                                              "0x1801B504"
-#define TC1TVR_reg                                                                   0x1801B504
+#define TC1TVR                                                                       0x9801B504
+#define TC1TVR_reg_addr                                                              "0x9801B504"
+#define TC1TVR_reg                                                                   0x9801B504
 #define set_TC1TVR_reg(data)   (*((volatile unsigned int*) TC1TVR_reg)=data)
 #define get_TC1TVR_reg   (*((volatile unsigned int*) TC1TVR_reg))
 #define TC1TVR_inst_adr                                                              "0x0041"
@@ -41,9 +41,9 @@
 #define TC1TVR_get_TC1TVR(data)                                                      ((0xFFFFFFFF&(data))>>0)
 
 
-#define TC2TVR                                                                       0x1801B508
-#define TC2TVR_reg_addr                                                              "0x1801B508"
-#define TC2TVR_reg                                                                   0x1801B508
+#define TC2TVR                                                                       0x9801B508
+#define TC2TVR_reg_addr                                                              "0x9801B508"
+#define TC2TVR_reg                                                                   0x9801B508
 #define set_TC2TVR_reg(data)   (*((volatile unsigned int*) TC2TVR_reg)=data)
 #define get_TC2TVR_reg   (*((volatile unsigned int*) TC2TVR_reg))
 #define TC2TVR_inst_adr                                                              "0x0042"
@@ -55,9 +55,9 @@
 #define TC2TVR_get_TC2TVR(data)                                                      ((0xFFFFFFFF&(data))>>0)
 
 
-#define TC0CVR                                                                       0x1801B50C
-#define TC0CVR_reg_addr                                                              "0x1801B50C"
-#define TC0CVR_reg                                                                   0x1801B50C
+#define TC0CVR                                                                       0x9801B50C
+#define TC0CVR_reg_addr                                                              "0x9801B50C"
+#define TC0CVR_reg                                                                   0x9801B50C
 #define set_TC0CVR_reg(data)   (*((volatile unsigned int*) TC0CVR_reg)=data)
 #define get_TC0CVR_reg   (*((volatile unsigned int*) TC0CVR_reg))
 #define TC0CVR_inst_adr                                                              "0x0043"
@@ -69,9 +69,9 @@
 #define TC0CVR_get_TC0CVR(data)                                                      ((0xFFFFFFFF&(data))>>0)
 
 
-#define TC1CVR                                                                       0x1801B510
-#define TC1CVR_reg_addr                                                              "0x1801B510"
-#define TC1CVR_reg                                                                   0x1801B510
+#define TC1CVR                                                                       0x9801B510
+#define TC1CVR_reg_addr                                                              "0x9801B510"
+#define TC1CVR_reg                                                                   0x9801B510
 #define set_TC1CVR_reg(data)   (*((volatile unsigned int*) TC1CVR_reg)=data)
 #define get_TC1CVR_reg   (*((volatile unsigned int*) TC1CVR_reg))
 #define TC1CVR_inst_adr                                                              "0x0044"
@@ -83,9 +83,9 @@
 #define TC1CVR_get_TC1CVR(data)                                                      ((0xFFFFFFFF&(data))>>0)
 
 
-#define TC2CVR                                                                       0x1801B514
-#define TC2CVR_reg_addr                                                              "0x1801B514"
-#define TC2CVR_reg                                                                   0x1801B514
+#define TC2CVR                                                                       0x9801B514
+#define TC2CVR_reg_addr                                                              "0x9801B514"
+#define TC2CVR_reg                                                                   0x9801B514
 #define set_TC2CVR_reg(data)   (*((volatile unsigned int*) TC2CVR_reg)=data)
 #define get_TC2CVR_reg   (*((volatile unsigned int*) TC2CVR_reg))
 #define TC2CVR_inst_adr                                                              "0x0045"
@@ -97,9 +97,9 @@
 #define TC2CVR_get_TC2VR(data)                                                       ((0xFFFFFFFF&(data))>>0)
 
 
-#define TC0CR                                                                        0x1801B518
-#define TC0CR_reg_addr                                                               "0x1801B518"
-#define TC0CR_reg                                                                    0x1801B518
+#define TC0CR                                                                        0x9801B518
+#define TC0CR_reg_addr                                                               "0x9801B518"
+#define TC0CR_reg                                                                    0x9801B518
 #define set_TC0CR_reg(data)   (*((volatile unsigned int*) TC0CR_reg)=data)
 #define get_TC0CR_reg   (*((volatile unsigned int*) TC0CR_reg))
 #define TC0CR_inst_adr                                                               "0x0046"
@@ -126,9 +126,9 @@
 #define TC0CR_get_RvdA(data)                                                         ((0x1F000000&(data))>>24)
 
 
-#define TC1CR                                                                        0x1801B51C
-#define TC1CR_reg_addr                                                               "0x1801B51C"
-#define TC1CR_reg                                                                    0x1801B51C
+#define TC1CR                                                                        0x9801B51C
+#define TC1CR_reg_addr                                                               "0x9801B51C"
+#define TC1CR_reg                                                                    0x9801B51C
 #define set_TC1CR_reg(data)   (*((volatile unsigned int*) TC1CR_reg)=data)
 #define get_TC1CR_reg   (*((volatile unsigned int*) TC1CR_reg))
 #define TC1CR_inst_adr                                                               "0x0047"
@@ -155,9 +155,9 @@
 #define TC1CR_get_RvdA(data)                                                         ((0x1F000000&(data))>>24)
 
 
-#define TC2CR                                                                        0x1801B520
-#define TC2CR_reg_addr                                                               "0x1801B520"
-#define TC2CR_reg                                                                    0x1801B520
+#define TC2CR                                                                        0x9801B520
+#define TC2CR_reg_addr                                                               "0x9801B520"
+#define TC2CR_reg                                                                    0x9801B520
 #define set_TC2CR_reg(data)   (*((volatile unsigned int*) TC2CR_reg)=data)
 #define get_TC2CR_reg   (*((volatile unsigned int*) TC2CR_reg))
 #define TC2CR_inst_adr                                                               "0x0048"
@@ -184,9 +184,9 @@
 #define TC2CR_get_RvdA(data)                                                         ((0x1F000000&(data))>>24)
 
 
-#define TC0ICR                                                                       0x1801B524
-#define TC0ICR_reg_addr                                                              "0x1801B524"
-#define TC0ICR_reg                                                                   0x1801B524
+#define TC0ICR                                                                       0x9801B524
+#define TC0ICR_reg_addr                                                              "0x9801B524"
+#define TC0ICR_reg                                                                   0x9801B524
 #define set_TC0ICR_reg(data)   (*((volatile unsigned int*) TC0ICR_reg)=data)
 #define get_TC0ICR_reg   (*((volatile unsigned int*) TC0ICR_reg))
 #define TC0ICR_inst_adr                                                              "0x0049"
@@ -198,9 +198,9 @@
 #define TC0ICR_get_TC0IE(data)                                                       ((0x80000000&(data))>>31)
 
 
-#define TC1ICR                                                                       0x1801B528
-#define TC1ICR_reg_addr                                                              "0x1801B528"
-#define TC1ICR_reg                                                                   0x1801B528
+#define TC1ICR                                                                       0x9801B528
+#define TC1ICR_reg_addr                                                              "0x9801B528"
+#define TC1ICR_reg                                                                   0x9801B528
 #define set_TC1ICR_reg(data)   (*((volatile unsigned int*) TC1ICR_reg)=data)
 #define get_TC1ICR_reg   (*((volatile unsigned int*) TC1ICR_reg))
 #define TC1ICR_inst_adr                                                              "0x004A"
@@ -212,9 +212,9 @@
 #define TC1ICR_get_TC1IE(data)                                                       ((0x80000000&(data))>>31)
 
 
-#define TC2ICR                                                                       0x1801B52C
-#define TC2ICR_reg_addr                                                              "0x1801B52C"
-#define TC2ICR_reg                                                                   0x1801B52C
+#define TC2ICR                                                                       0x9801B52C
+#define TC2ICR_reg_addr                                                              "0x9801B52C"
+#define TC2ICR_reg                                                                   0x9801B52C
 #define set_TC2ICR_reg(data)   (*((volatile unsigned int*) TC2ICR_reg)=data)
 #define get_TC2ICR_reg   (*((volatile unsigned int*) TC2ICR_reg))
 #define TC2ICR_inst_adr                                                              "0x004B"
