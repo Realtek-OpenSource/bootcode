@@ -1,0 +1,224 @@
+/*
+ * Realtek 1295 common configuration settings
+ *
+ */
+
+#ifndef __CONFIG_RTK_RTD1295_COMMON_H
+#define __CONFIG_RTK_RTD1295_COMMON_H
+
+/* Display CPU and Board Info */
+#define CONFIG_DISPLAY_CPUINFO		1
+#define CONFIG_DISPLAY_BOARDINFO	1
+
+#define CONFIG_SKIP_LOWLEVEL_INIT	1
+
+#undef CONFIG_USE_IRQ				/* no support for IRQs */
+
+#define CONFIG_CMDLINE_TAG		1	/* enable passing of ATAGs */
+#define CONFIG_SETUP_MEMORY_TAGS	1
+#define CONFIG_REVISION_TAG		1
+
+/*
+ * Size of malloc() pool
+ * Total Size Environment - 128k
+ * Malloc - add 256k
+ */
+#define CONFIG_ENV_SIZE			(128 << 10)
+#define CONFIG_SYS_MALLOC_LEN		(CONFIG_ENV_SIZE + (256 << 10))
+#define CONFIG_SYS_NON_CACHE_LEN	(1 << 20)
+
+/*
+ * Hardware drivers
+ */
+
+/*
+ * serial port - NS16550 compatible
+ */
+#define V_NS16550_CLK				27000000
+
+#define CONFIG_SYS_NS16550
+#define CONFIG_SYS_NS16550_SERIAL
+#define CONFIG_SYS_NS16550_REG_SIZE	(-4)
+#define CONFIG_SYS_NS16550_CLK		V_NS16550_CLK
+
+#define UART1_BASE					0x1801B200
+#define UART0_BASE					0x18007800
+#define CONFIG_CONS_INDEX			1
+#define CONFIG_SYS_NS16550_COM1     UART0_BASE
+
+#define CONFIG_BAUDRATE				115200
+#define CONFIG_SYS_BAUDRATE_TABLE	{4800, 9600, 19200, 38400, 57600, 115200}
+
+#define CONFIG_SYS_CONSOLE_IS_IN_ENV	1
+
+/* Flash */
+#define CONFIG_SYS_NO_FLASH	1
+
+/* Disabled commands */
+//#undef CONFIG_CMD_NET
+#undef CONFIG_CMD_NFS
+#undef CONFIG_CMD_FPGA		/* FPGA configuration Support   */
+#undef CONFIG_CMD_IMLS		/* List all found images        */
+#undef CONFIG_CMD_BOOTD
+#undef CONFIG_CMD_BOOTM
+#undef CONFIG_CMD_CRC32
+#undef CONFIG_CMD_ECHO
+#undef CONFIG_CMD_ITEST
+#undef CONFIG_CMD_XIMG
+#undef CONFIG_CMD_MISC
+#undef CONFIG_CMD_SETGETDCR
+#undef CONFIG_CMD_IMI
+#undef CONFIG_CMD_IMPORTENV
+#undef CONFIG_CMD_EXPORTENV
+#undef CONFIG_CMD_RUN
+#undef CONFIG_CMD_SOURCE
+#undef CONFIG_CMD_BASE
+#undef CONFIG_CMD_LOOP
+#undef CONFIG_CMD_TEST
+#undef CONFIG_CMD_TRUE
+#undef CONFIG_CMD_FALSE
+#undef CONFIG_CMD_LOADS
+#undef CONFIG_CMD_VERSION
+#undef CONFIG_CMD_EXIT
+#undef CONFIG_CMD_CONSOLE
+#undef CONFIG_CMD_SHOWVAR
+#undef CONFIG_CMD_MM
+#undef CONFIG_CMD_NM
+#undef CONFIG_CMD_CMP
+#undef CONFIG_CMD_CP
+
+#define CONFIG_CMD_UNZIP
+#define CONFIG_CMD_SOURCE
+
+/*
+ * Environment setup
+ */
+
+#define CONFIG_BOOTDELAY	0
+
+#define CONFIG_ENV_OVERWRITE
+
+#define CONFIG_BOOTARGS \
+	"console=ttyS0,115200 earlyprintk loglevel=4"
+
+#define CONFIG_BOOTCOMMAND \
+	"bootr"
+
+#define	CONFIG_CMD_BOOTM
+
+#define CONFIG_EXTRA_ENV_SETTINGS                   \
+   "kernel_loadaddr=0x03000000\0"                  \
+   "fdt_loadaddr=0x01FF2000\0"                  \
+   "rootfs_loadaddr=0x02200000\0"                   \
+   "mtd_part=mtdparts=rtk_nand:\0"                  \
+
+/* Pass open firmware flat tree */
+#define CONFIG_FIT 					1
+#define CONFIG_OF_LIBFDT    		1
+#define CONFIG_OF_STDOUT_VIA_ALIAS	1
+
+/* Console */
+#define CONFIG_CMDLINE_EDITING
+#define CONFIG_AUTO_COMPLETE
+
+/*
+ * Miscellaneous configurable options
+ */
+
+#define CONFIG_SYS_LONGHELP		/* undef to save memory */
+#define CONFIG_SYS_HUSH_PARSER	/* use "hush" command parser */
+#define CONFIG_SYS_CBSIZE		640
+
+/* Print Buffer Size */
+#define CONFIG_SYS_PBSIZE		(CONFIG_SYS_CBSIZE + sizeof(CONFIG_SYS_PROMPT) + 16)
+#define CONFIG_SYS_MAXARGS		16
+
+/* Boot Argument Buffer Size */
+#define CONFIG_SYS_BARGSIZE		(CONFIG_SYS_CBSIZE)
+
+/*
+ * memtest setup
+ */
+#define CONFIG_SYS_MEMTEST_START	0x00000000
+#define CONFIG_SYS_MEMTEST_END		(CONFIG_SYS_MEMTEST_START + (32 << 20))
+
+/* Default load address */
+#define CONFIG_SYS_LOAD_ADDR		0x03000000
+
+/* Use General purpose timer 2 */
+#define CONFIG_SYS_TIMER		0     //FPGA
+#define CONFIG_SYS_HZ			1000
+
+/*
+ * Stack sizes
+ *
+ * The stack sizes are set up in start.S using the settings below
+ */
+//stack size is setup in linker script 1MB
+#ifdef CONFIG_USE_IRQ
+	#define CONFIG_STACKSIZE_IRQ	(4 << 10)	/* IRQ stack */
+	#define CONFIG_STACKSIZE_FIQ	(4 << 10)	/* FIQ stack */
+#endif
+
+/*
+ * SDRAM Memory Map
+ * Even though we use two CS all the memory
+ * is mapped to one contiguous block
+ */
+#define CONFIG_NR_DRAM_BANKS		1
+#define CONFIG_SYS_SDRAM_BASE		0x00000000
+#define CONFIG_SYS_RAM_DCU1_SIZE	0x20000000		//512MB
+
+
+#define CONFIG_NO_RELOCATION
+//if the relocation is enabled, the address is used to be the stack at very beginning.
+#define CONFIG_SYS_INIT_SP_ADDR     0x00100000
+
+
+// 1:cache disable   0:enable
+#if 1
+	#define CONFIG_SYS_ICACHE_OFF
+	#define CONFIG_SYS_DCACHE_OFF
+#else
+	#define CONFIG_NONCACHE_ALLOCATION
+	#define CONFIG_CMD_CACHE
+#endif
+
+#define CONFIG_SYS_CACHELINE_SIZE	64
+
+/*
+ * rm include/autoconf.mk ---- prevent use old CONFIG_SYS_TEXT_BASE
+ * make CONFIG_SYS_TEXT_BASE
+ */
+#ifndef CONFIG_SYS_TEXT_BASE
+	#define CONFIG_SYS_TEXT_BASE		0x00020000
+#endif
+#define CONFIG_BOOT_PARAM_BASE			(0x00100000 + 0x100)
+#define CONFIG_HEAP_RELOCATION
+
+/* ENV related config options */
+#define CONFIG_ENV_IS_NOWHERE
+
+#define CONFIG_SYS_PROMPT       		"Realtek> "
+
+/* Library support */
+#define CONFIG_LZMA
+#define CONFIG_LZO
+
+#ifdef CONFIG_CMD_NET
+	/* Eth Net */
+	#define CONFIG_CMD_PING
+	#define CONFIG_CMD_TFTPPUT
+	#define CONFIG_RTL8168
+	#define CONFIG_TFTP_BLOCKSIZE		400
+	
+	/* Network setting */
+	#define CONFIG_ETHADDR				00:10:20:30:40:50
+	#define CONFIG_IPADDR				192.168.100.1
+	#define CONFIG_GATEWAYIP			192.168.100.254
+	#define CONFIG_SERVERIP				192.168.100.2
+	#define CONFIG_NETMASK				255.255.255.0
+#endif
+
+#endif /* __CONFIG_RTK_RTD1295_COMMON_H */
+
