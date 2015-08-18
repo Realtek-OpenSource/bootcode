@@ -170,7 +170,6 @@
 #define CONFIG_SYS_RAM_DCU1_SIZE	0x20000000		//512MB
 
 
-#define CONFIG_NO_RELOCATION
 //if the relocation is enabled, the address is used to be the stack at very beginning.
 #define CONFIG_SYS_INIT_SP_ADDR     0x00100000
 
@@ -219,6 +218,12 @@
 	#define CONFIG_SERVERIP				192.168.100.2
 	#define CONFIG_NETMASK				255.255.255.0
 #endif
+
+
+/********* RTK CONFIGS ************/
+#define CONFIG_NO_RELOCATION
+#define CONFIG_HEAP_ADDR	0x07880000
+
 
 #endif /* __CONFIG_RTK_RTD1295_COMMON_H */
 

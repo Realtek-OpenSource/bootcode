@@ -20,11 +20,13 @@ DECLARE_GLOBAL_DATA_PTR;
  */
 unsigned int get_accessible_ddr_size(int unit)
 {
+#ifdef CONFIG_BOARD_FPGA
+	return CONFIG_SYS_RAM_DCU1_SIZE;
+#else
 	unsigned int dc_sys_misc_regBase;
 	unsigned int dc_sys_misc_regValue;
 	unsigned int dc_mem_density;
 	unsigned int dc_mem_density_size=0;
-
 
 	dc_sys_misc_regBase = DC_SECURE_MISC_reg;
 
@@ -69,6 +71,7 @@ unsigned int get_accessible_ddr_size(int unit)
 		return dc_mem_density_size ;
 	else
 		return dc_mem_density_size* 0x100000;
+#endif //CONFIG_BOARD_FPGA
 }
 
 /**

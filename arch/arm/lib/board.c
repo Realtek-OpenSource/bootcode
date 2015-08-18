@@ -433,11 +433,17 @@ void board_init_f(ulong bootflag)
 	/* Ram ist board specific, so move it to board code ... */
 	dram_init_banksize();
 	display_dram_config();	/* and display it */
-
+#ifdef CONFIG_NO_RELOCATION
+	gd->relocaddr = (ulong)&_start;
+	gd->start_addr_sp = CONFIG_SYS_INIT_SP_ADDR;
+	gd->reloc_off = 0;
+	debug("Don't do relocation!\n");
+#else
 	gd->relocaddr = addr;
 	gd->start_addr_sp = addr_sp;
 	gd->reloc_off = addr - (ulong)&_start;
 	debug("relocation Offset is: %08lx\n", gd->reloc_off);
+#endif //CONFIG_NO_RELOCATION
 	if (new_fdt) {
 		memcpy(new_fdt, gd->fdt_blob, fdt_size);
 		gd->fdt_blob = new_fdt;
@@ -528,8 +534,13 @@ void board_init_r(gd_t *id, ulong dest_addr)
 	post_output_backlog();
 #endif
 
+#ifndef CONFIG_NO_RELOCATION
 	/* The Malloc area is immediately below the monitor copy in DRAM */
 	malloc_start = dest_addr - TOTAL_MALLOC_LEN;
+#else
+	/* RTK disable Relocation */
+	malloc_start = CONFIG_HEAP_ADDR;
+#endif //CONFIG_NO_RELOCATION
 	mem_malloc_init (malloc_start, TOTAL_MALLOC_LEN);
 
 #ifdef CONFIG_ARCH_EARLY_INIT_R

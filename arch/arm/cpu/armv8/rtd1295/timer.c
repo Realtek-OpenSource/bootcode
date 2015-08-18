@@ -48,16 +48,16 @@ static struct timer_reg *timer_base = &rtk_timer[SYSTEM_TIMER];
 int timer_init(void)
 {   
 	//Disable Interrupt
-	__raw_writel(timer_base->icr, TIMERINFO_INTERRUPT_DISABLE);
+	__raw_writel(TIMERINFO_INTERRUPT_DISABLE, (unsigned long)timer_base->icr);
 
 	//Disable Timer
-	__raw_writel(timer_base->cr, TIMERINFO_TIMER_DISABLE);
+	__raw_writel(TIMERINFO_TIMER_DISABLE, (unsigned long)timer_base->cr);
 
 	//Set The Initial Value
-	__raw_writel(timer_base->tvr, TIMER_LOAD_VAL);
+	__raw_writel(TIMER_LOAD_VAL, (unsigned long)timer_base->tvr);
 
 	//Enable Timer Mode
-	__raw_writel(timer_base->cr, TIMERINFO_TIMER_ENABLE);
+	__raw_writel(TIMERINFO_TIMER_ENABLE, (unsigned long)timer_base->cr);
 
 	return 0;
 }
