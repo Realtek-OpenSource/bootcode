@@ -53,42 +53,6 @@
 /* Flash */
 #define CONFIG_SYS_NO_FLASH	1
 
-/* Disabled commands */
-//#undef CONFIG_CMD_NET
-#undef CONFIG_CMD_NFS
-#undef CONFIG_CMD_FPGA		/* FPGA configuration Support   */
-#undef CONFIG_CMD_IMLS		/* List all found images        */
-#undef CONFIG_CMD_BOOTD
-#undef CONFIG_CMD_BOOTM
-#undef CONFIG_CMD_CRC32
-#undef CONFIG_CMD_ECHO
-#undef CONFIG_CMD_ITEST
-#undef CONFIG_CMD_XIMG
-#undef CONFIG_CMD_MISC
-#undef CONFIG_CMD_SETGETDCR
-#undef CONFIG_CMD_IMI
-#undef CONFIG_CMD_IMPORTENV
-#undef CONFIG_CMD_EXPORTENV
-#undef CONFIG_CMD_RUN
-#undef CONFIG_CMD_SOURCE
-#undef CONFIG_CMD_BASE
-#undef CONFIG_CMD_LOOP
-#undef CONFIG_CMD_TEST
-#undef CONFIG_CMD_TRUE
-#undef CONFIG_CMD_FALSE
-#undef CONFIG_CMD_LOADS
-#undef CONFIG_CMD_VERSION
-#undef CONFIG_CMD_EXIT
-#undef CONFIG_CMD_CONSOLE
-#undef CONFIG_CMD_SHOWVAR
-#undef CONFIG_CMD_MM
-#undef CONFIG_CMD_NM
-#undef CONFIG_CMD_CMP
-#undef CONFIG_CMD_CP
-
-#define CONFIG_CMD_UNZIP
-#define CONFIG_CMD_SOURCE
-
 /*
  * Environment setup
  */
