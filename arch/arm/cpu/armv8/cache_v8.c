@@ -9,6 +9,10 @@
 #include <asm/system.h>
 #include <asm/armv8/mmu.h>
 
+#ifdef CONFIG_BSP_REALTEK
+#include <asm/arch/system.h>
+#endif
+
 DECLARE_GLOBAL_DATA_PTR;
 
 #ifndef CONFIG_SYS_DCACHE_OFF
@@ -25,7 +29,8 @@ void set_pgtable_section(u64 *page_table, u64 index, u64 section,
 /* to activate the MMU we need to set up virtual memory */
 static void mmu_setup(void)
 {
-	int i, j, el;
+	u64 i, j;
+	unsigned int el;
 	bd_t *bd = gd->bd;
 	u64 *page_table = (u64 *)gd->arch.tlb_addr;
 
@@ -45,6 +50,11 @@ static void mmu_setup(void)
 					    MT_NORMAL);
 		}
 	}
+
+#ifdef CONFIG_BSP_REALTEK	// map RBUS region
+	for (i = RBUS_ADDR >> SECTION_SHIFT ; i <= RBUS_END >> SECTION_SHIFT ; i++ )
+		set_pgtable_section(page_table, i, i << SECTION_SHIFT, MT_DEVICE_NGNRE);
+#endif
 
 	/* load TTBR0 */
 	el = current_el();

@@ -25,7 +25,6 @@
  */
 #define CONFIG_ENV_SIZE			(128 << 10)
 #define CONFIG_SYS_MALLOC_LEN		(CONFIG_ENV_SIZE + (256 << 10))
-#define CONFIG_SYS_NON_CACHE_LEN	(1 << 20)
 
 /*
  * Hardware drivers
@@ -175,7 +174,7 @@
 
 
 // 1:cache disable   0:enable
-#if 1
+#if 0
 	#define CONFIG_SYS_ICACHE_OFF
 	#define CONFIG_SYS_DCACHE_OFF
 #else
@@ -193,7 +192,6 @@
 	#define CONFIG_SYS_TEXT_BASE		0x00020000
 #endif
 #define CONFIG_BOOT_PARAM_BASE			(0x00100000 + 0x100)
-#define CONFIG_HEAP_RELOCATION
 
 /* ENV related config options */
 #define CONFIG_ENV_IS_NOWHERE
@@ -221,6 +219,7 @@
 
 
 /********* RTK CONFIGS ************/
+#define CONFIG_BSP_REALTEK
 #define CONFIG_NO_RELOCATION
 #define CONFIG_HEAP_ADDR	0x07880000
 

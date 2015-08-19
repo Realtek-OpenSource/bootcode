@@ -25,4 +25,8 @@
 #endif
 #define MAX_HWTIMER_NUM         3
 
+#define RBUS_ADDR		0x98000000	// Used for mmu_setup
+#define RBUS_SIZE		0x00050000
+#define RBUS_END		(RBUS_ADDR + RBUS_SIZE)
+
 #endif  // _ASM_MACH_SYSTEM_H_
