@@ -13,11 +13,6 @@
  */
 #include <configs/rtd1295_common.h>
 
-#define COUNTER_FREQUENCY               4000000 // FIXME, need to know what impact it will cause
-
-#define GICD_BASE               0xff011000      // FIXME, all these register should be reviewed
-#define GICC_BASE               0xff012000      // FIXME, all these register should be reviewed
-
 /*
  * SDRAM Memory Map
  * Even though we use two CS all the memory

@@ -337,6 +337,11 @@ config CMD_FPGA
 	help
 	  FPGA support.
 
+config CMD_GICTEST
+	depends on TARGET_RTD1295
+	bool "gic"
+	help
+	  GIC test support.
 endmenu
 
 
