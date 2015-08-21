@@ -24,14 +24,14 @@ static int do_gictest(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 			cpu_sgi_test(sgi, mask);
 			break;
 		case 2:
+			sgi = simple_strtoul(argv[1], NULL, 10);
+			cpu_sgi_test(sgi, mask);
 		case 3:
 		default:
 			printf("Not support yet\n");
-			rtk_local_irq_disable();
 			return 1;
 			break;
 	}
-	rtk_local_irq_disable();
 	return 0;
 }
 

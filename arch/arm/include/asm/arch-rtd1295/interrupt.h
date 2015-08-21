@@ -24,3 +24,5 @@ static inline void rtk_local_irq_disable(void)
 
 extern void gic_test_init(void);
 extern void cpu_sgi_test(unsigned sgi_number, unsigned cpu_mask);
+extern unsigned gic_get_irq(void);
+extern unsigned get_cpu_id(void);

@@ -51,11 +51,29 @@ ENTRY(gic_test_init)
 	ret
 ENDPROC(gic_test_init)
 
+ENTRY(gic_get_irq)
+#if defined(CONFIG_GICV2)
+	ldr	x1, =GICC_BASE
+	ldr	w0, [x1, GICC_AIAR]
+	str	w0, [x1, GICC_AEOIR]
+	and	w0, w0, #0x3ff
+#else
+	mov	w0, #-1
+#endif
+	ret
+ENDPROC(gic_get_irq)
+
+ENTRY(get_cpu_id)
+	mrs	x0, mpidr_el1
+	and	x0, x0, #0xff
+ENDPROC(get_cpu_id)
+
 ENTRY(cpu_sgi_test)
 #if defined(CONFIG_GICV2)
 	stp	x4, x5, [sp,#-16]!
 	ldr	x4, =GICD_BASE
-	mov	w5, #0x8000
+	and	w5, w0, #0xf
+	orr	w5, w5, #0x8000
 	movk	w5, #0x200, lsl #16
 	str	w5, [x4, GICD_SGIR]
 	ldp	x4, x5, [sp],#16
