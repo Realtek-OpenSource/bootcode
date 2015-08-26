@@ -339,9 +339,15 @@ config CMD_FPGA
 
 config CMD_GICTEST
 	depends on TARGET_RTD1295
-	bool "gic"
+	bool "gic test"
 	help
 	  GIC test support.
+
+config CMD_CACHETEST
+	depends on !SYS_DCACHE_OFF
+	bool "cache test"
+	help
+	  Cache stress test support.
 endmenu
 
 

@@ -132,8 +132,6 @@
 #define CONFIG_SYS_SDRAM_BASE		0x00000000
 #define CONFIG_SYS_RAM_DCU1_SIZE	0x20000000		//512MB
 
-#define COUNTER_FREQUENCY		4000000 // FIXME, need to know what impact it will cause
-
 /* GIC-400 setting */
 #define CONFIG_GICV2
 #define GICD_BASE			0xff011000      // FIXME, all these register should be reviewed

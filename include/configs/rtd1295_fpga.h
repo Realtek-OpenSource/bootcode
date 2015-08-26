@@ -18,8 +18,6 @@
  * Even though we use two CS all the memory
  * is mapped to one contiguous block
  */
-#if 1
-// undefine existed configs to prevent compile warning
 #undef CONFIG_NR_DRAM_BANKS
 #undef CONFIG_SYS_SDRAM_BASE
 #undef CONFIG_SYS_RAM_DCU1_SIZE
@@ -32,7 +30,7 @@
 #undef  V_NS16550_CLK
 #define V_NS16550_CLK			33000000
 
-#endif
+#define COUNTER_FREQUENCY               33000000 // FIXME, need to know what impact it will cause
 
 #define CONFIG_VERSION			"0000"
 

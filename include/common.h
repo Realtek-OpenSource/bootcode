@@ -485,6 +485,12 @@ void	icache_disable(void);
 int	dcache_status (void);
 void	dcache_enable (void);
 void	dcache_disable(void);
+#if defined(CONFIG_CMD_CACHETEST)
+void	dcache_disable_no_flush(void);
+void	dcache_enable_wt(void);
+void	reset_cache_write_through(void);
+void	reset_cache_write_back(void);
+#endif
 void	mmu_disable(void);
 #if defined(CONFIG_ARM)
 void	relocate_code(ulong);

@@ -362,7 +362,6 @@ KBUILD_CPPFLAGS := -D__KERNEL__ -D__UBOOT__
 KBUILD_CFLAGS   := -Wall -Wstrict-prototypes \
 		   -Wno-format-security \
 		   -fno-builtin -ffreestanding \
-		   -DDEBUG \
 		   -Werror \
 		   -mgeneral-regs-only #FIXME
 KBUILD_AFLAGS   := -D__ASSEMBLY__

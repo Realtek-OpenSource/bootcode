@@ -243,3 +243,99 @@ void flush_cache(unsigned long start, unsigned long size)
 {
 	flush_dcache_range(start, start + size);
 }
+
+#ifdef CONFIG_CMD_CACHETEST
+void dcache_disable_no_flush(void)
+{
+	uint32_t sctlr;
+
+	sctlr = get_sctlr();
+
+	/* if cache isn't enabled no need to disable */
+	if (!(sctlr & CR_C))
+		return;
+
+	set_sctlr(sctlr & ~(CR_C|CR_M));
+}
+
+static void mmu_setup_wt(void) // To set up cache as writethrough
+{
+	u64 i, j;
+	unsigned int el;
+	bd_t *bd = gd->bd;
+	u64 *page_table = (u64 *)gd->arch.tlb_addr;
+
+	/* Setup an identity-mapping for all spaces */
+	for (i = 0; i < (PGTABLE_SIZE >> 3); i++) {
+		set_pgtable_section(page_table, i, i << SECTION_SHIFT,
+				    MT_DEVICE_NGNRNE);
+	}
+
+	/* Setup an identity-mapping for all RAM space */
+	for (i = 0; i < CONFIG_NR_DRAM_BANKS; i++) {
+		ulong start = bd->bi_dram[i].start;
+		ulong end = bd->bi_dram[i].start + bd->bi_dram[i].size;
+		for (j = start >> SECTION_SHIFT;
+		     j < end >> SECTION_SHIFT; j++) {
+			set_pgtable_section(page_table, j, j << SECTION_SHIFT,
+					    MT_NORMAL);
+		}
+	}
+
+#ifdef CONFIG_BSP_REALTEK	// map RBUS region
+	for (i = RBUS_ADDR >> SECTION_SHIFT ; i <= RBUS_END >> SECTION_SHIFT ; i++ )
+		set_pgtable_section(page_table, i, i << SECTION_SHIFT, MT_DEVICE_NGNRE);
+#endif
+
+	/* load TTBR0 */
+	el = current_el();
+	if (el == 1) {
+		set_ttbr_tcr_mair(el, gd->arch.tlb_addr,
+				  TCR_FLAGS | TCR_EL1_IPS_BITS,
+				  MEMORY_ATTRIBUTES_WT);
+	} else if (el == 2) {
+		set_ttbr_tcr_mair(el, gd->arch.tlb_addr,
+				  TCR_FLAGS | TCR_EL2_IPS_BITS,
+				  MEMORY_ATTRIBUTES_WT);
+	} else {
+		set_ttbr_tcr_mair(el, gd->arch.tlb_addr,
+				  TCR_FLAGS | TCR_EL3_IPS_BITS,
+				  MEMORY_ATTRIBUTES_WT);
+	}
+	/* enable the mmu */
+	set_sctlr(get_sctlr() | CR_M);
+}
+
+void dcache_enable_wt(void)
+{
+	/* The data cache is not active unless the mmu is enabled */
+	if (!(get_sctlr() & CR_M)) {
+		invalidate_dcache_all();
+		__asm_invalidate_tlb_all();
+		mmu_setup_wt();
+	}
+
+	set_sctlr(get_sctlr() | CR_C);
+}
+
+void reset_cache_write_through(void)
+{
+	icache_disable();
+	invalidate_icache_all();
+	dcache_disable();
+	invalidate_dcache_all();
+
+	icache_enable();
+	dcache_enable_wt();
+}
+
+void reset_cache_write_back(void)
+{
+	icache_disable();
+	invalidate_icache_all();
+	dcache_disable();
+	invalidate_dcache_all();
+
+	enable_caches();
+}
+#endif
