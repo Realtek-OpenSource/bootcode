@@ -74,12 +74,12 @@ int validate_memory(phys_addr_t start, phys_size_t size, u8 start_pattern, u8 ba
 	return ret;
 }
 
-int test_basic_copy(void)
+int test_basic_copy(int cache_config)
 {
 	int ret = 0;
 
-	printf("%s ADDR:0x%08lx, CHUNK:%u, TEST_PATTERN:0x%02x, BASE_PATTERN:0x%02x ",
-		__FUNCTION__, memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern);
+	printf("%s:%d ADDR:0x%08lx, CHUNK:%u, TEST_PATTERN:0x%02x, BASE_PATTERN:0x%02x ",
+		__FUNCTION__, cache_config, memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern);
 
 	reset_memory_region(memtest_addr, memtest_chunk_size, base_pattern);
 	set_memory(memtest_addr, memtest_chunk_size, memtest_pattern);
@@ -90,68 +90,92 @@ int test_basic_copy(void)
 	return ret;
 }
 
-int test_no_flush(void)
+int test_no_flush(int cache_config)
 {
 	int ret = 0;
 
-	printf("%s ADDR:0x%08lx, CHUNK:%u, TEST_PATTERN:0x%02x, BASE_PATTERN:0x%02x ",
-		__FUNCTION__, memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern);
+	printf("%s:%d ADDR:0x%08lx, CHUNK:%u, TEST_PATTERN:0x%02x, BASE_PATTERN:0x%02x ",
+		__FUNCTION__, cache_config, memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern);
 
 	reset_memory_region(memtest_addr, memtest_chunk_size, base_pattern);
 	set_memory(memtest_addr, memtest_chunk_size, memtest_pattern);
 
 	dcache_disable_no_flush();
-	
-	ret = validate_memory(memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern, CACHE_NOTFLUSH);
 
-	invalidate_dcache_all();
-	dcache_enable();
+	if(cache_config == WRITE_BACK) {
+		ret = validate_memory(memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern, CACHE_NOTFLUSH);
+		invalidate_dcache_all();
+		dcache_enable();
+	} else if(cache_config == WRITE_THROUGH) {
+		ret = validate_memory(memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern, CACHE_FLUSH);
+		invalidate_dcache_all();
+		dcache_enable_wt();
+	} else {
+		printf("Error cache_config %d\n", cache_config);
+		ret = 1;
+	}
 
 	update_test_condition();
 
 	return ret;
 }
 
-int test_flush_range(void)
+int test_flush_range(int cache_config)
 {
 	int ret = 0;
 
-	printf("%s ADDR:0x%08lx, CHUNK:%u, TEST_PATTERN:0x%02x, BASE_PATTERN:0x%02x ",
-		__FUNCTION__, memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern);
+	printf("%s:%d ADDR:0x%08lx, CHUNK:%u, TEST_PATTERN:0x%02x, BASE_PATTERN:0x%02x ",
+		__FUNCTION__, cache_config, memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern);
 
 	reset_memory_region(memtest_addr, memtest_chunk_size, base_pattern);
 	set_memory(memtest_addr, memtest_chunk_size, memtest_pattern);
 	flush_dcache_range(memtest_addr, memtest_addr + memtest_chunk_size);
 
 	dcache_disable_no_flush();
-	
+
 	ret = validate_memory(memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern, CACHE_FLUSH);
 
 	invalidate_dcache_all();
-	dcache_enable();
+
+	if(cache_config == WRITE_BACK) {
+		dcache_enable();
+	} else if (cache_config == WRITE_THROUGH) {
+		dcache_enable_wt();
+	} else {
+		printf("Error cache_config %d\n", cache_config);
+		ret = 1;
+	}
 
 	update_test_condition();
 
 	return ret;
 }
 
-int test_flush_all(void)
+int test_flush_all(int cache_config)
 {
 	int ret = 0;
 
-	printf("%s ADDR:0x%08lx, CHUNK:%u, TEST_PATTERN:0x%02x, BASE_PATTERN:0x%02x ",
-		__FUNCTION__, memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern);
+	printf("%s:%d ADDR:0x%08lx, CHUNK:%u, TEST_PATTERN:0x%02x, BASE_PATTERN:0x%02x ",
+		__FUNCTION__, cache_config, memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern);
 
 	reset_memory_region(memtest_addr, memtest_chunk_size, base_pattern);
 	set_memory(memtest_addr, memtest_chunk_size, memtest_pattern);
 	flush_dcache_all();
 
 	dcache_disable_no_flush();
-	
+
 	ret = validate_memory(memtest_addr, memtest_chunk_size, memtest_pattern, base_pattern, CACHE_FLUSH);
 
 	invalidate_dcache_all();
-	dcache_enable();
+
+	if(cache_config == WRITE_BACK) {
+		dcache_enable();
+	} else if (cache_config == WRITE_THROUGH) {
+		dcache_enable_wt();
+	} else {
+		printf("Error cache_config %d\n", cache_config);
+		ret = 1;
+	}
 
 	update_test_condition();
 
@@ -162,15 +186,27 @@ static int do_cachetest(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[
 {
 	int i = 0;
 
-	for(i = 0 ; i <= MAX_CHUNK_SIZE ; i++) {
+	for(i = 0 ; i <= 0x70000000 ; i++) {
 		/* cache write-back test */
-		if(test_basic_copy())
+		reset_cache_write_back();
+		if(test_basic_copy(WRITE_BACK))
 			break;
-		if(test_no_flush())
+		if(test_no_flush(WRITE_BACK))
 			break;
-		if(test_flush_range())
+		if(test_flush_range(WRITE_BACK))
 			break;
-		if(test_flush_all())
+		if(test_flush_all(WRITE_BACK))
+			break;
+
+		/* cache write-through test */
+		reset_cache_write_through();
+		if(test_basic_copy(WRITE_THROUGH))
+			break;
+		if(test_no_flush(WRITE_THROUGH))
+			break;
+		if(test_flush_range(WRITE_THROUGH))
+			break;
+		if(test_flush_all(WRITE_THROUGH))
 			break;
 	}
 
