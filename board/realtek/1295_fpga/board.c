@@ -35,7 +35,7 @@ int checkboard(void)
 int board_init(void)
 {
 	//gd->bd->bi_arch_number = MACH_TYPE_RTK_RTD1295;
-	gd->bd->bi_boot_params = CONFIG_BOOT_PARAM_BASE; /* boot param addr */
+	/* boot param removed since ATAG is not used anymore*/
 
 	return 0;
 }

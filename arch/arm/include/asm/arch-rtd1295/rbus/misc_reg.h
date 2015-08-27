@@ -225,4 +225,146 @@
 #define TC2ICR_TC2IE_src(data)                                                       ((0x80000000&(data))>>31)
 #define TC2ICR_get_TC2IE(data)                                                       ((0x80000000&(data))>>31)
 
+
+#define TCWCR                                                                        0x9801B5B0
+#define TCWCR_reg_addr                                                               "0x9801B5B0"
+#define TCWCR_reg                                                                    0x9801B5B0
+#define set_TCWCR_reg(data)   (*((volatile unsigned int*) TCWCR_reg)=data)
+#define get_TCWCR_reg   (*((volatile unsigned int*) TCWCR_reg))
+#define TCWCR_inst_adr                                                               "0x006C"
+#define TCWCR_inst                                                                   0x006C
+#define TCWCR_WD_INT_EN_shift                                                        (31)
+#define TCWCR_WD_INT_EN_mask                                                         (0x80000000)
+#define TCWCR_WD_INT_EN(data)                                                        (0x80000000&((data)<<31))
+#define TCWCR_WD_INT_EN_src(data)                                                    ((0x80000000&(data))>>31)
+#define TCWCR_get_WD_INT_EN(data)                                                    ((0x80000000&(data))>>31)
+#define TCWCR_NMIC_shift                                                             (12)
+#define TCWCR_NMIC_mask                                                              (0x0000F000)
+#define TCWCR_NMIC(data)                                                             (0x0000F000&((data)<<12))
+#define TCWCR_NMIC_src(data)                                                         ((0x0000F000&(data))>>12)
+#define TCWCR_get_NMIC(data)                                                         ((0x0000F000&(data))>>12)
+#define TCWCR_WDC_shift                                                              (8)
+#define TCWCR_WDC_mask                                                               (0x00000F00)
+#define TCWCR_WDC(data)                                                              (0x00000F00&((data)<<8))
+#define TCWCR_WDC_src(data)                                                          ((0x00000F00&(data))>>8)
+#define TCWCR_get_WDC(data)                                                          ((0x00000F00&(data))>>8)
+#define TCWCR_WDEN_shift                                                             (0)
+#define TCWCR_WDEN_mask                                                              (0x000000FF)
+#define TCWCR_WDEN(data)                                                             (0x000000FF&((data)<<0))
+#define TCWCR_WDEN_src(data)                                                         ((0x000000FF&(data))>>0)
+#define TCWCR_get_WDEN(data)                                                         ((0x000000FF&(data))>>0)
+
+
+#define TCWTR                                                                        0x9801B5B4
+#define TCWTR_reg_addr                                                               "0x9801B5B4"
+#define TCWTR_reg                                                                    0x9801B5B4
+#define set_TCWTR_reg(data)   (*((volatile unsigned int*) TCWTR_reg)=data)
+#define get_TCWTR_reg   (*((volatile unsigned int*) TCWTR_reg))
+#define TCWTR_inst_adr                                                               "0x006D"
+#define TCWTR_inst                                                                   0x006D
+#define TCWTR_WDCLR_shift                                                            (0)
+#define TCWTR_WDCLR_mask                                                             (0x00000001)
+#define TCWTR_WDCLR(data)                                                            (0x00000001&((data)<<0))
+#define TCWTR_WDCLR_src(data)                                                        ((0x00000001&(data))>>0)
+#define TCWTR_get_WDCLR(data)                                                        ((0x00000001&(data))>>0)
+
+
+#define TCWNMI                                                                       0x9801B5B8
+#define TCWNMI_reg_addr                                                              "0x9801B5B8"
+#define TCWNMI_reg                                                                   0x9801B5B8
+#define set_TCWNMI_reg(data)   (*((volatile unsigned int*) TCWNMI_reg)=data)
+#define get_TCWNMI_reg   (*((volatile unsigned int*) TCWNMI_reg))
+#define TCWNMI_inst_adr                                                              "0x006E"
+#define TCWNMI_inst                                                                  0x006E
+#define TCWNMI_SEL_shift                                                             (0)
+#define TCWNMI_SEL_mask                                                              (0xFFFFFFFF)
+#define TCWNMI_SEL(data)                                                             (0xFFFFFFFF&((data)<<0))
+#define TCWNMI_SEL_src(data)                                                         ((0xFFFFFFFF&(data))>>0)
+#define TCWNMI_get_SEL(data)                                                         ((0xFFFFFFFF&(data))>>0)
+
+
+#define TCWOV                                                                        0x9801B5BC
+#define TCWOV_reg_addr                                                               "0x9801B5BC"
+#define TCWOV_reg                                                                    0x9801B5BC
+#define set_TCWOV_reg(data)   (*((volatile unsigned int*) TCWOV_reg)=data)
+#define get_TCWOV_reg   (*((volatile unsigned int*) TCWOV_reg))
+#define TCWOV_inst_adr                                                               "0x006F"
+#define TCWOV_inst                                                                   0x006F
+#define TCWOV_SEL_shift                                                              (0)
+#define TCWOV_SEL_mask                                                               (0xFFFFFFFF)
+#define TCWOV_SEL(data)                                                              (0xFFFFFFFF&((data)<<0))
+#define TCWOV_SEL_src(data)                                                          ((0xFFFFFFFF&(data))>>0)
+#define TCWOV_get_SEL(data)                                                          ((0xFFFFFFFF&(data))>>0)
+
+
+#define TCWCR_SWC                                                                    0x9801B5C0
+#define TCWCR_SWC_reg_addr                                                           "0x9801B5C0"
+#define TCWCR_SWC_reg                                                                0x9801B5C0
+#define set_TCWCR_SWC_reg(data)   (*((volatile unsigned int*) TCWCR_SWC_reg)=data)
+#define get_TCWCR_SWC_reg   (*((volatile unsigned int*) TCWCR_SWC_reg))
+#define TCWCR_SWC_inst_adr                                                           "0x0070"
+#define TCWCR_SWC_inst                                                               0x0070
+#define TCWCR_SWC_WD_INT_EN_shift                                                    (31)
+#define TCWCR_SWC_WD_INT_EN_mask                                                     (0x80000000)
+#define TCWCR_SWC_WD_INT_EN(data)                                                    (0x80000000&((data)<<31))
+#define TCWCR_SWC_WD_INT_EN_src(data)                                                ((0x80000000&(data))>>31)
+#define TCWCR_SWC_get_WD_INT_EN(data)                                                ((0x80000000&(data))>>31)
+#define TCWCR_SWC_NMIC_shift                                                         (12)
+#define TCWCR_SWC_NMIC_mask                                                          (0x0000F000)
+#define TCWCR_SWC_NMIC(data)                                                         (0x0000F000&((data)<<12))
+#define TCWCR_SWC_NMIC_src(data)                                                     ((0x0000F000&(data))>>12)
+#define TCWCR_SWC_get_NMIC(data)                                                     ((0x0000F000&(data))>>12)
+#define TCWCR_SWC_WDC_shift                                                          (8)
+#define TCWCR_SWC_WDC_mask                                                           (0x00000F00)
+#define TCWCR_SWC_WDC(data)                                                          (0x00000F00&((data)<<8))
+#define TCWCR_SWC_WDC_src(data)                                                      ((0x00000F00&(data))>>8)
+#define TCWCR_SWC_get_WDC(data)                                                      ((0x00000F00&(data))>>8)
+#define TCWCR_SWC_WDEN_shift                                                         (0)
+#define TCWCR_SWC_WDEN_mask                                                          (0x000000FF)
+#define TCWCR_SWC_WDEN(data)                                                         (0x000000FF&((data)<<0))
+#define TCWCR_SWC_WDEN_src(data)                                                     ((0x000000FF&(data))>>0)
+#define TCWCR_SWC_get_WDEN(data)                                                     ((0x000000FF&(data))>>0)
+
+
+#define TCWTR_SWC                                                                    0x9801B5C4
+#define TCWTR_SWC_reg_addr                                                           "0x9801B5C4"
+#define TCWTR_SWC_reg                                                                0x9801B5C4
+#define set_TCWTR_SWC_reg(data)   (*((volatile unsigned int*) TCWTR_SWC_reg)=data)
+#define get_TCWTR_SWC_reg   (*((volatile unsigned int*) TCWTR_SWC_reg))
+#define TCWTR_SWC_inst_adr                                                           "0x0071"
+#define TCWTR_SWC_inst                                                               0x0071
+#define TCWTR_SWC_WDCLR_shift                                                        (0)
+#define TCWTR_SWC_WDCLR_mask                                                         (0x00000001)
+#define TCWTR_SWC_WDCLR(data)                                                        (0x00000001&((data)<<0))
+#define TCWTR_SWC_WDCLR_src(data)                                                    ((0x00000001&(data))>>0)
+#define TCWTR_SWC_get_WDCLR(data)                                                    ((0x00000001&(data))>>0)
+
+
+#define TCWNMI_SWC                                                                   0x9801B5C8
+#define TCWNMI_SWC_reg_addr                                                          "0x9801B5C8"
+#define TCWNMI_SWC_reg                                                               0x9801B5C8
+#define set_TCWNMI_SWC_reg(data)   (*((volatile unsigned int*) TCWNMI_SWC_reg)=data)
+#define get_TCWNMI_SWC_reg   (*((volatile unsigned int*) TCWNMI_SWC_reg))
+#define TCWNMI_SWC_inst_adr                                                          "0x0072"
+#define TCWNMI_SWC_inst                                                              0x0072
+#define TCWNMI_SWC_SEL_shift                                                         (0)
+#define TCWNMI_SWC_SEL_mask                                                          (0xFFFFFFFF)
+#define TCWNMI_SWC_SEL(data)                                                         (0xFFFFFFFF&((data)<<0))
+#define TCWNMI_SWC_SEL_src(data)                                                     ((0xFFFFFFFF&(data))>>0)
+#define TCWNMI_SWC_get_SEL(data)                                                     ((0xFFFFFFFF&(data))>>0)
+
+
+#define TCWOV_SWC                                                                    0x9801B5CC
+#define TCWOV_SWC_reg_addr                                                           "0x9801B5CC"
+#define TCWOV_SWC_reg                                                                0x9801B5CC
+#define set_TCWOV_SWC_reg(data)   (*((volatile unsigned int*) TCWOV_SWC_reg)=data)
+#define get_TCWOV_SWC_reg   (*((volatile unsigned int*) TCWOV_SWC_reg))
+#define TCWOV_SWC_inst_adr                                                           "0x0073"
+#define TCWOV_SWC_inst                                                               0x0073
+#define TCWOV_SWC_SEL_shift                                                          (0)
+#define TCWOV_SWC_SEL_mask                                                           (0xFFFFFFFF)
+#define TCWOV_SWC_SEL(data)                                                          (0xFFFFFFFF&((data)<<0))
+#define TCWOV_SWC_SEL_src(data)                                                      ((0xFFFFFFFF&(data))>>0)
+#define TCWOV_SWC_get_SEL(data)                                                      ((0xFFFFFFFF&(data))>>0)
+
 #endif

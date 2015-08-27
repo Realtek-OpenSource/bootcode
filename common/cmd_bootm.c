@@ -635,6 +635,18 @@ U_BOOT_CMD(
 #endif	/* CONFIG_CMD_BOOTZ */
 
 #ifdef CONFIG_CMD_BOOTI
+#ifdef CONFIG_ARM64_IMAGE_LEGACY
+/* ARM64 kernel Image header head changed at 3.12 -> 3.13 */
+struct Image_header {
+	uint32_t	code0;		/* Executable code */
+	uint32_t	res_code;	/* reseved code */
+	uint64_t	text_offset;	/* Image load offset, LE */
+	uint64_t	res0;		/* reserved */
+	uint64_t	res1;		/* reserved */
+};
+
+#define DEFAULT_IMAGE_SIZE	(6 << 20)
+#else //CONFIG_ARM64_IMAGE_LEGACY
 /* See Documentation/arm64/booting.txt in the Linux kernel */
 struct Image_header {
 	uint32_t	code0;		/* Executable code */
@@ -651,6 +663,10 @@ struct Image_header {
 
 #define LINUX_ARM64_IMAGE_MAGIC	0x644d5241
 
+#endif //CONFIG_ARM64_IMAGE_LEGACY
+
+static unsigned Image_Size = 0;
+
 static int booti_setup(bootm_headers_t *images)
 {
 	struct Image_header *ih;
@@ -658,6 +674,11 @@ static int booti_setup(bootm_headers_t *images)
 
 	ih = (struct Image_header *)map_sysmem(images->ep, 0);
 
+#ifdef CONFIG_ARM64_IMAGE_LEGACY
+	printf("Use ARM64 legacy Image, no MAGIC check\n");
+	printf("FIXME : should identify image size from RTK partition info, use default 0x%08x\n", DEFAULT_IMAGE_SIZE);
+	Image_Size = DEFAULT_IMAGE_SIZE;
+#else
 	if (ih->magic != le32_to_cpu(LINUX_ARM64_IMAGE_MAGIC)) {
 		puts("Bad Linux ARM64 Image magic!\n");
 		return 1;
@@ -667,6 +688,9 @@ static int booti_setup(bootm_headers_t *images)
 		puts("Image lacks image_size field, assuming 16MiB\n");
 		ih->image_size = (16 << 20);
 	}
+
+	Image_Size = ih->image_size;
+#endif
 
 	/*
 	 * If we are not at the correct run-time location, set the new
@@ -680,7 +704,7 @@ static int booti_setup(bootm_headers_t *images)
 
 		src = (void *)images->ep;
 		images->ep = dst;
-		memmove((void *)dst, src, le32_to_cpu(ih->image_size));
+		memmove((void *)dst, src, le32_to_cpu(Image_Size));
 	}
 
 	return 0;
@@ -693,7 +717,6 @@ static int booti_start(cmd_tbl_t *cmdtp, int flag, int argc,
 			char * const argv[], bootm_headers_t *images)
 {
 	int ret;
-	struct Image_header *ih;
 
 	ret = do_bootm_states(cmdtp, flag, argc, argv, BOOTM_STATE_START,
 			      images, 1);
@@ -713,9 +736,7 @@ static int booti_start(cmd_tbl_t *cmdtp, int flag, int argc,
 	if (ret != 0)
 		return 1;
 
-	ih = (struct Image_header *)map_sysmem(images->ep, 0);
-
-	lmb_reserve(&images->lmb, images->ep, le32_to_cpu(ih->image_size));
+	lmb_reserve(&images->lmb, images->ep, le32_to_cpu(Image_Size));
 
 	/*
 	 * Handle the BOOTM_STATE_FINDOTHER state ourselves as we do not

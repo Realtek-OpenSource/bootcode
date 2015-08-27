@@ -141,6 +141,18 @@ config CMD_BOOTM
 	help
 	  Boot an application image from the memory.
 
+menu "ARM64 Kernel Image header selection"
+	depends on ARM64 && CMD_BOOTM
+
+config ARM64_IMAGE_LEGACY
+	bool "kernel image header legacy"
+	default n
+	help
+	  ARM64 kernel image header had changed at 3.12 -> 3.13.
+	  Select this option if using kernel version less-equal to 3.12.
+
+endmenu
+
 config CMD_GO
 	bool "go"
 	default y
@@ -171,6 +183,12 @@ config CMD_XIMG
 	help
 	  Extract a part of a multi-image.
 
+config CMD_BOOTR
+	bool "bootr"
+	depends on TARGET_RTD1295
+	default y
+	help
+	  RealTek boot-up sequence.
 endmenu
 
 menu "Environment commands"

@@ -35,6 +35,7 @@ obj-y += cmd_boot.o
 obj-$(CONFIG_CMD_BOOTM) += cmd_bootm.o bootm.o bootm_os.o
 obj-y += cmd_help.o
 obj-y += cmd_version.o
+obj-$(CONFIG_CMD_BOOTR) += cmd_bootr.o rtk/boot.o
 
 # environment
 obj-y += env_attr.o

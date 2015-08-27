@@ -67,16 +67,22 @@
 #define CONFIG_BOOTCOMMAND \
 	"bootr"
 
-#define	CONFIG_CMD_BOOTM
+#define CONFIG_KERNEL_LOADADDR	0x03000000
+#define CONFIG_ROOTFS_LOADADDR	0x02200000
+#define CONFIG_LOGO_LOADADDR	0x02002000      //reserved ~2M
+#define CONFIG_FDT_LOADADDR	0x01FF2000      //reserved 64K
+#define CONFIG_FW_LOADADDR	0x01b00000  //reserved 4M
 
 #define CONFIG_EXTRA_ENV_SETTINGS                   \
    "kernel_loadaddr=0x03000000\0"                  \
    "fdt_loadaddr=0x01FF2000\0"                  \
+   "fdt_high=0xffffffffffffffff\0"                  \
    "rootfs_loadaddr=0x02200000\0"                   \
    "mtd_part=mtdparts=rtk_nand:\0"                  \
 
 /* Pass open firmware flat tree */
-#define CONFIG_FIT 					1
+#define CONFIG_CMD_BOOTI
+#define CONFIG_ARMV8_SWITCH_TO_EL1
 #define CONFIG_OF_LIBFDT    		1
 #define CONFIG_OF_STDOUT_VIA_ALIAS	1
 
@@ -161,7 +167,6 @@
 #ifndef CONFIG_SYS_TEXT_BASE
 	#define CONFIG_SYS_TEXT_BASE		0x00020000
 #endif
-#define CONFIG_BOOT_PARAM_BASE			(0x00100000 + 0x100)
 
 /* ENV related config options */
 #define CONFIG_ENV_IS_NOWHERE
