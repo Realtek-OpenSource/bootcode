@@ -61,9 +61,6 @@
 
 #define CONFIG_ENV_OVERWRITE
 
-#define CONFIG_BOOTARGS \
-	"console=ttyS0,115200 earlyprintk loglevel=4"
-
 #define CONFIG_BOOTCOMMAND \
 	"bootr"
 
