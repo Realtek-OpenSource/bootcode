@@ -79,7 +79,7 @@
 
 /* Pass open firmware flat tree */
 #define CONFIG_CMD_BOOTI
-#define CONFIG_ARMV8_SWITCH_TO_EL1
+//#define CONFIG_ARMV8_SWITCH_TO_EL1
 #define CONFIG_OF_LIBFDT    		1
 #define CONFIG_OF_STDOUT_VIA_ALIAS	1
 
