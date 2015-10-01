@@ -38,11 +38,42 @@ ENTRY(gic_test_init)
 	/**** Enable All SGI & PPI interrupts ****/
 	str	w9, [x4, GICD_ISENABLERn]
 
+	/**** Target All SPI to CPU0 ****/
+	ldr	w9, [x4, GICD_TYPER]
+	and	w10, w9, #0x1f          /* ITLinesNumber */
+	cbz	w10, 4f                 /* No SPIs */
+	lsl	w10, w10, #5		/* Calculate total SPI, each contains 32 line */
+	mov	w9, #0x0101
+	movk	w9, #0x0101, lsl #16
+	add	x5, x4, (GICD_ITARGETSRn + 0x20)	/* Starts from SGI + PPI */
+3:
+	str	w9, [x5], #0x4
+	sub	w10, w10, #0x4
+	and	x2, x5, 0xfff	/* Only set until UART, temp WA since IRQ 98 keeps trigger */
+	cmp	x2, 0x84c
+	beq	4f
+	cbnz	w10, 3b
+4:
+
+	/**** Set All Priority to 0xA0 ****/
+	ldr	w9, [x4, GICD_TYPER]
+	and	w10, w9, #0x1f          /* ITLinesNumber */
+	cbz	w10, 6f                 /* No SPIs */
+	lsl	w10, w10, #5		/* Calculate total SPI, each contains 32 line */
+	mov	w9, #0xa0a0
+	movk	w9, #0xa0a0, lsl #16
+	add	x5, x4, (GICD_IPRIORITYRn)	/* Starts from SGI */
+5:
+	str	w9, [x5], #0x4
+	sub	w10, w10, #0x4
+	cbnz	w10, 5b
+6:
+
 	/**** Initialize Cpu Interface ****/
 	ldr	x4, =GICC_BASE
 	mov	w9, #0x1e7
 	str	w9, [x4, GICC_CTLR]
-	mov	w9, #0x1 << 7
+	mov	w9, #0xf8
 	str	w9, [x4, GICC_PMR]
 
 	ldp	x9, x10, [sp,#16]
@@ -54,8 +85,8 @@ ENDPROC(gic_test_init)
 ENTRY(gic_get_irq)
 #if defined(CONFIG_GICV2)
 	ldr	x1, =GICC_BASE
-	ldr	w0, [x1, GICC_AIAR]
-	str	w0, [x1, GICC_AEOIR]
+	ldr	w0, [x1, GICC_IAR]
+	str	w0, [x1, GICC_EOIR]
 	and	w0, w0, #0x3ff
 #else
 	mov	w0, #-1
