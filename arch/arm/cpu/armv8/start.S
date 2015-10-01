@@ -150,6 +150,9 @@ WEAK(lowlevel_init)
 	 */
 	ldr	x0, =GICD_BASE
 	bl	gic_init_secure
+	ldr	x0, =GICD_BASE
+	ldr	x1, =GICC_BASE
+	bl	gic_init_secure_percpu
 
 #else /* CONFIG_ARMV8_MULTIENTRY is set */
 
