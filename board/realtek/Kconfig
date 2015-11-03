@@ -1,0 +1,28 @@
+menu "RealTek 1295 Board Type"
+	depends on TARGET_RTD1295
+
+choice
+	prompt "Board Type Select"
+
+config BOARD_FPGA
+	bool "RTD1295 FPGA Board"
+
+endchoice
+endmenu
+
+if TARGET_RTD1295
+
+config SYS_VENDOR
+	default "realtek"
+
+config SYS_SOC
+	default "rtd1295"
+
+config SYS_BOARD
+	default "1295_fpga" if BOARD_FPGA
+
+config SYS_CONFIG_NAME
+	default "rtd1295_fpga" if BOARD_FPGA
+
+
+endif #TARGET_RTD1295
