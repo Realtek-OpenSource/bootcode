@@ -63,7 +63,8 @@ unsigned int get_accessible_ddr_size(int unit)
 
 		default:
 			printf("[ERR] %s: hw setting error. (impossible value 0x%x)\n", __FUNCTION__, dc_mem_density);
-			break;
+			printf("[ERR] Fall back to using CONFIG_SYS_RAM_DCU1_SIZE\n");
+			return CONFIG_SYS_RAM_DCU1_SIZE;
 	}
 	dc_mem_density_size /=8;
 

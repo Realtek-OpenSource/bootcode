@@ -7,6 +7,9 @@ choice
 config BOARD_FPGA
 	bool "RTD1295 FPGA Board"
 
+config BOARD_QA
+	bool "RTD1295 QA Board"
+
 endchoice
 endmenu
 
@@ -20,9 +23,11 @@ config SYS_SOC
 
 config SYS_BOARD
 	default "1295_fpga" if BOARD_FPGA
+	default "1295_qa" if BOARD_QA
 
 config SYS_CONFIG_NAME
 	default "rtd1295_fpga" if BOARD_FPGA
+	default "rtd1295_qa" if BOARD_QA
 
 
 endif #TARGET_RTD1295
