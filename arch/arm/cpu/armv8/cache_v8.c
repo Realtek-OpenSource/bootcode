@@ -135,7 +135,7 @@ void dcache_disable(void)
 	sctlr = get_sctlr();
 
 	/* if cache isn't enabled no need to disable */
-	if (!(sctlr & CR_C))
+	if (!(sctlr & CR_C) && !(sctlr & CR_M))
 		return;
 
 	set_sctlr(sctlr & ~(CR_C|CR_M));

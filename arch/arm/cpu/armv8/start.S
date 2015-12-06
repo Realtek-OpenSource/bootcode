@@ -43,6 +43,9 @@ _bss_end_ofs:
 	.quad	__bss_end - _start
 
 reset:
+	branch_if_slave x0, slave_start
+	bl	dcache_disable		// WA for ROM code not turning off MMU
+slave_start:				// Be aware that SP used is from inherit from ROM code
 	/*
 	 * Could be EL3/EL2/EL1, Initial State:
 	 * Little Endian, MMU Disabled, i/dCache Disabled
