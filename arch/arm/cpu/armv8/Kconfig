@@ -13,3 +13,11 @@ config RTK_XEN_MONITOR_SUPPORT
 	  REALTEK XEN EL3 Monitor mode support. Turn on this
 	  configuration so XEN could perform initialization
 	  for the 1st time when startup.
+
+config RTK_SLAVE_CPU_BOOT
+	boolean "RTK support for slave cpu boot into uboot"
+	depends on TARGET_RTD1295
+	select ARMV8_MULTIENTRY
+	default n
+	help
+	  Support for RealTek platform slave CPU boot into uboot.

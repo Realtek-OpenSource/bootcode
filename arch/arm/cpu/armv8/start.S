@@ -11,6 +11,10 @@
 #include <asm/macro.h>
 #include <asm/armv8/mmu.h>
 
+#ifdef CONFIG_RTK_SLAVE_CPU_BOOT
+#include <asm/arch/cpu.h>
+#endif
+
 /*************************************************************************
  *
  * Startup Code (reset vector)
@@ -90,8 +94,9 @@ slave_start:				// Be aware that SP used is from inherit from ROM code
 	 */
 slave_cpu:
 	wfe
+	mov	x0, #0
 	ldr	x1, =CPU_RELEASE_ADDR
-	ldr	x0, [x1]
+	ldr	w0, [x1]
 	cbz	x0, slave_cpu
 	br	x0			/* branch to the given address */
 master_cpu:

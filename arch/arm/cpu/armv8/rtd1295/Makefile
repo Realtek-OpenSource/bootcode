@@ -11,5 +11,6 @@ obj-y  += timer.o
 obj-y  += reset.o
 obj-y  += dram.o
 obj-y  += hwinit.o
+obj-y  += cpu.o
 
 obj-$(CONFIG_CMD_GICTEST) += gic.o

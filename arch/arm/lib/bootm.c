@@ -30,6 +30,10 @@
 #include <asm/armv7.h>
 #endif
 
+#ifdef CONFIG_RTK_SLAVE_CPU_BOOT
+#include <asm/arch/cpu.h>
+#endif
+
 DECLARE_GLOBAL_DATA_PTR;
 
 static struct tag *params;
@@ -263,6 +267,9 @@ bool armv7_boot_nonsec(void)
 /* Subcommand: GO */
 static void boot_jump_linux(bootm_headers_t *images, int flag)
 {
+#ifdef CONFIG_RTK_SLAVE_CPU_BOOT
+	bootup_slave_cpu();
+#endif
 #ifdef CONFIG_ARM64
 	void (*kernel_entry)(void *fdt_addr, void *res0, void *res1,
 			void *res2);
