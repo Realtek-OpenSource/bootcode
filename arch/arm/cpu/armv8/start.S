@@ -147,6 +147,9 @@ ENDPROC(apply_core_errata)
 WEAK(lowlevel_init)
 	mov	x29, lr			/* Save LR */
 
+	mov	x0, #0x1
+	lsl	x0, x0, #6
+	msr	S3_1_C15_C2_1, x0       /* set up each core CPUECTLR.SMPEN bit for Cache Coherency */
 #ifndef CONFIG_ARMV8_MULTIENTRY
 	/*
 	 * For single-entry systems the lowlevel init is very simple.
