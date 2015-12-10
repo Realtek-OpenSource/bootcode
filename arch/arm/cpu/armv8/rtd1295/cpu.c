@@ -18,13 +18,14 @@ void bootup_slave_cpu(void)
 	printf("Bring UP slave CPUs\n");
 	/* Turn on SLAVE CPU */
 	__raw_writel(0x00021000, CPU_RELEASE_ADDR);	//Set default release ADDR to uboot start text
+	udelay(10);
 
 	__raw_writel(0x00010000, 0x9801D104);
-	udelay(1);
+	udelay(10);
 	__raw_writel(0x03FFFF00, 0x9801D530);
-	udelay(1);
+	udelay(10);
 	__raw_writel(0x011F3BFF, 0x9801D100);
-	udelay(1);
+	udelay(10);
 	__raw_writel(0x0F1F3BFF, 0x9801D100);
 	udelay(10);
 
