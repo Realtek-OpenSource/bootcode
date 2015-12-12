@@ -1021,4 +1021,9 @@ int cpu_release(int nr, int argc, char * const argv[]);
 # include <environment.h>
 #endif
 
+#ifdef CONFIG_SYS_NONCACHED_MEMORY
+void noncached_init(void);
+phys_addr_t noncached_alloc(size_t size, size_t align);
+#endif
+
 #endif	/* __COMMON_H_ */

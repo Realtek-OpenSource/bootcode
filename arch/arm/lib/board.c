@@ -511,6 +511,9 @@ void board_init_r(gd_t *id, ulong dest_addr)
 
 	/* Enable caches */
 	enable_caches();
+#ifdef CONFIG_SYS_NONCACHED_MEMORY
+	noncached_init();
+#endif
 
 	debug("monitor flash len: %08lX\n", monitor_flash_len);
 	board_init();	/* Setup chipselects */

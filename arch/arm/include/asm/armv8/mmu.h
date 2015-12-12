@@ -138,5 +138,7 @@ static inline void set_ttbr_tcr_mair(int el, u64 table, u64 tcr, u64 attr)
 	}
 	asm volatile("isb");
 }
+
+void mmu_set_region(u64 start, u64 size, u64 memory_type);
 #endif
 #endif /* _ASM_ARMV8_MMU_H_ */

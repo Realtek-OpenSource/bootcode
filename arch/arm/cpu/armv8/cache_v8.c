@@ -75,6 +75,18 @@ static void mmu_setup(void)
 	set_sctlr(get_sctlr() | CR_M);
 }
 
+void mmu_set_region(u64 start, u64 size, u64 memory_type)
+{
+	u64 i;
+	u64 *page_table = (u64 *)gd->arch.tlb_addr;
+
+	for (i = start >> SECTION_SHIFT ; i <= (start + size) >> SECTION_SHIFT ; i++ )
+		set_pgtable_section(page_table, i, i << SECTION_SHIFT, memory_type);
+
+	flush_dcache_all();
+	__asm_invalidate_tlb_all();
+}
+
 /*
  * Performs a invalidation of the entire data cache at all levels
  */
