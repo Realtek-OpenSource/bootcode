@@ -155,6 +155,16 @@ WEAK(lowlevel_init)
 	mov	x0, #0x1
 	lsl	x0, x0, #6
 	msr	S3_1_C15_C2_1, x0       /* set up each core CPUECTLR.SMPEN bit for Cache Coherency */
+
+	/* setup ACTLR_EL3(2).CPUECTLR_EL1 bit*/
+	mov	x0, #0x2
+	mrs 	x1, ACTLR_EL3
+	orr	x1, x1, x0
+	msr	ACTLR_EL3, x1
+	mrs	x1, ACTLR_EL2
+	orr	x1, x1, x0
+	msr	ACTLR_EL2, x1
+
 #ifndef CONFIG_ARMV8_MULTIENTRY
 	/*
 	 * For single-entry systems the lowlevel init is very simple.
