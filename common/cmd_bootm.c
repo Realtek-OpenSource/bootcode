@@ -671,6 +671,8 @@ static int booti_setup(bootm_headers_t *images)
 {
 	struct Image_header *ih;
 	uint64_t dst;
+	unsigned long len = CONFIG_GZIP_KERNEL_MAX_LEN;
+	void *decompress_addr = (void*)CONFIG_GZIP_DECOMPRESS_KERNEL_ADDR;
 
 	ih = (struct Image_header *)map_sysmem(images->ep, 0);
 
@@ -680,8 +682,25 @@ static int booti_setup(bootm_headers_t *images)
 	Image_Size = DEFAULT_IMAGE_SIZE;
 #else
 	if (ih->magic != le32_to_cpu(LINUX_ARM64_IMAGE_MAGIC)) {
-		puts("Bad Linux ARM64 Image magic!\n");
-		return 1;
+		printf("Not raw Image, Starting Decompress Image.gz...\n\n\n");
+
+		if (gunzip(decompress_addr, CONFIG_GZIP_KERNEL_MAX_LEN, (unsigned char *)images->ep, &len)) {
+			printf("Decompress FAIL!!\n");
+			return 1;
+		}
+
+		if (len == CONFIG_GZIP_KERNEL_MAX_LEN) {
+			printf("Kernel Image maybe truncated, Please increase CONFIG_GZIP_KERNEL_MAX_LEN size\n");
+			return 1;
+		}
+
+		images->ep = CONFIG_GZIP_DECOMPRESS_KERNEL_ADDR;
+		ih = (struct Image_header *)map_sysmem(images->ep, 0);
+
+		if (ih->magic != le32_to_cpu(LINUX_ARM64_IMAGE_MAGIC)) {
+			puts("Bad Linux ARM64 Image magic!\n");
+			return 1;
+		}
 	}
 	
 	if (ih->image_size == 0) {

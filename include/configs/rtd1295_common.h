@@ -79,6 +79,8 @@
 
 /* Pass open firmware flat tree */
 #define CONFIG_CMD_BOOTI
+#define CONFIG_GZIP_DECOMPRESS_KERNEL_ADDR	0x0c000000	// GZIPED kernel decompress addr
+#define CONFIG_GZIP_KERNEL_MAX_LEN		0x01400000	// Set MAX size to 20M after decompressed
 //#define CONFIG_ARMV8_SWITCH_TO_EL1
 #define CONFIG_OF_LIBFDT    		1
 #define CONFIG_OF_STDOUT_VIA_ALIAS	1
