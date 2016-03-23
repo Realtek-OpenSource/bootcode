@@ -21,3 +21,10 @@ config RTK_SLAVE_CPU_BOOT
 	default n
 	help
 	  Support for RealTek platform slave CPU boot into uboot.
+
+config RTK_TEE_SUPPORT
+	boolean "RTK supports TEE"
+	depends on TARGET_RTD1295
+	default n
+	help
+	  Support for RealTek plaform TEE.

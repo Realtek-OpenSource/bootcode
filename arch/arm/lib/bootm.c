@@ -34,6 +34,8 @@
 #include <asm/arch/cpu.h>
 #endif
 
+#include <asm/io.h>
+
 DECLARE_GLOBAL_DATA_PTR;
 
 static struct tag *params;
@@ -45,6 +47,10 @@ static ulong get_sp(void)
 	asm("mov %0, sp" : "=r"(ret) : );
 	return ret;
 }
+
+#ifdef CONFIG_RTK_TEE_SUPPORT	
+static void (*bl31_entrypoint) (void* para1, void* para2) = (void*)BL31_ENTRY_ADDR;
+#endif
 
 void arch_lmb_reserve(struct lmb *lmb)
 {
@@ -75,8 +81,12 @@ void arch_lmb_reserve(struct lmb *lmb)
  */
 static void announce_and_cleanup(int fake)
 {
+#ifdef CONFIG_RTK_TEE_SUPPORT
+	printf("Jump to BL31 entrypoint\n");
+#else
 	printf("\nStarting kernel ...%s\n\n", fake ?
 		"(fake run for tracing)" : "");
+#endif
 	bootstage_mark_name(BOOTSTAGE_ID_BOOTM_HANDOFF, "start_kernel");
 #ifdef CONFIG_BOOTSTAGE_FDT
 	bootstage_fdt_add_report();
@@ -198,8 +208,10 @@ static void do_nonsec_virt_switch(void)
 #ifdef CONFIG_ARMV8_MULTIENTRY
 	smp_kick_all_cpus();
 #endif
+#ifndef CONFIG_RTK_TEE_SUPPORT	
 	dcache_disable();	/* flush cache before swtiching to EL2 */
 	armv8_switch_to_el2();
+#endif	
 #ifdef CONFIG_ARMV8_SWITCH_TO_EL1
 	armv8_switch_to_el1();
 #endif
@@ -274,10 +286,8 @@ static void boot_jump_linux(bootm_headers_t *images, int flag)
 	void (*kernel_entry)(void *fdt_addr, void *res0, void *res1,
 			void *res2);
 	int fake = (flag & BOOTM_STATE_OS_FAKE_GO);
-
 	kernel_entry = (void (*)(void *fdt_addr, void *res0, void *res1,
 				void *res2))images->ep;
-
 	debug("## Transferring control to Linux (at address %lx)...\n",
 		(ulong) kernel_entry);
 	bootstage_mark(BOOTSTAGE_ID_RUN_OS);
@@ -286,7 +296,11 @@ static void boot_jump_linux(bootm_headers_t *images, int flag)
 
 	if (!fake) {
 		do_nonsec_virt_switch();
-		kernel_entry(images->ft_addr, NULL, NULL, NULL);
+#ifdef CONFIG_RTK_TEE_SUPPORT			
+		bl31_entrypoint(kernel_entry, images->ft_addr);
+#else
+		kernel_entry(images->ft_addr, NULL, NULL, NULL); 
+#endif
 	}
 #else
 	unsigned long machid = gd->bd->bi_arch_number;

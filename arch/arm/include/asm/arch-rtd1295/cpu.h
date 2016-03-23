@@ -11,6 +11,9 @@
 #define __RTK_CPU_H__
 
 #define CPU_RELEASE_ADDR	0x9801aa44
+#ifdef CONFIG_RTK_TEE_SUPPORT	
+#define BL31_ENTRY_ADDR		0x10120000
+#endif
 
 #ifndef __ASSEMBLY__
 void bootup_slave_cpu(void);
