@@ -24,6 +24,8 @@
  * Malloc - add 256k
  */
 #define CONFIG_ENV_SIZE			(128 << 10)
+#define CONFIG_ENV_IS_IN_REMOTE
+#define CONFIG_ENV_ADDR			0x10000000
 #define CONFIG_SYS_MALLOC_LEN		(CONFIG_ENV_SIZE + (256 << 10))
 
 /*
@@ -168,9 +170,6 @@
 #ifndef CONFIG_SYS_TEXT_BASE
 	#define CONFIG_SYS_TEXT_BASE		0x00020000
 #endif
-
-/* ENV related config options */
-#define CONFIG_ENV_IS_NOWHERE
 
 #define CONFIG_SYS_PROMPT       		"Realtek> "
 
