@@ -84,8 +84,8 @@ static void announce_and_cleanup(int fake)
 #ifdef CONFIG_RTK_TEE_SUPPORT
 	printf("Jump to BL31 entrypoint\n");
 #else
-	printf("\nStarting kernel ...%s\n\n", fake ?
-		"(fake run for tracing)" : "");
+	printf("\nStarting %s ...%s\n\n", (getenv("hyp_loadaddr") ? "Hypervisor" : "Kernel"), (fake ?
+		"(fake run for tracing)" : ""));
 #endif
 	bootstage_mark_name(BOOTSTAGE_ID_BOOTM_HANDOFF, "start_kernel");
 #ifdef CONFIG_BOOTSTAGE_FDT

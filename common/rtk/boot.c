@@ -22,7 +22,9 @@ static int rtk_call_booti(void)
 	int j;
 	int argc=4;
 
-	if ((booti_argv[1] = getenv("kernel_loadaddr")) == NULL) {
+	if (getenv("hyp_loadaddr")) {
+		booti_argv[1] = getenv("hyp_loadaddr");
+	} else if ((booti_argv[1] = getenv("kernel_loadaddr")) == NULL) {
 		booti_argv[1] =(char*) CONFIG_KERNEL_LOADADDR;
 	}
 
