@@ -208,8 +208,8 @@ static void do_nonsec_virt_switch(void)
 #ifdef CONFIG_ARMV8_MULTIENTRY
 	smp_kick_all_cpus();
 #endif
-#ifndef CONFIG_RTK_TEE_SUPPORT	
 	dcache_disable();	/* flush cache before swtiching to EL2 */
+#ifndef CONFIG_RTK_TEE_SUPPORT
 	armv8_switch_to_el2();
 #endif	
 #ifdef CONFIG_ARMV8_SWITCH_TO_EL1

@@ -44,7 +44,7 @@ void bootup_slave_cpu(void)
 		//printf("dummy1 = 0x%08x\n", __raw_readl(0x98000454));
 		//printf("dummy2 = 0x%08x\n", __raw_readl(0x98000458));
 		//printf("dummy3 = 0x%08x\n", __raw_readl(0x9800045c));
-		if (count > 10) break;
+		if (count > 10000) break;
 		udelay(100);
 	}
 	//clear flag
@@ -64,7 +64,7 @@ void bootup_slave_cpu(void)
 		//printf("dummy1 = 0x%08x\n", __raw_readl(0x98000454));
 		//printf("dummy2 = 0x%08x\n", __raw_readl(0x98000458));
 		//printf("dummy3 = 0x%08x\n", __raw_readl(0x9800045c));
-		if (count > 10) break;
+		if (count > 10000) break;
 		udelay(100);
 	}
 	//clear flag
