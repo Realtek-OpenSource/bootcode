@@ -57,7 +57,7 @@ void bootup_slave_cpu(void)
 	/* Release Slave CPUs From ROM code and enter WFI in uboot entry */
 	asm volatile("sev" : : : "memory");
 	
-   	//wait slave cores get release address 0x2100i0
+   	//wait slave cores get release address 0x21000
 	count = 0;
 	while(__raw_readl(0x98000454) != 0x1 || __raw_readl(0x98000458) != 0x2  || __raw_readl(0x9800045C) != 0x3){
 		count++;

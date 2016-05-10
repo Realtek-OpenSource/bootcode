@@ -279,6 +279,7 @@ bool armv7_boot_nonsec(void)
 /* Subcommand: GO */
 static void boot_jump_linux(bootm_headers_t *images, int flag)
 {
+	int err;
 #ifdef CONFIG_RTK_SLAVE_CPU_BOOT
 	bootup_slave_cpu();
 #endif
@@ -296,7 +297,10 @@ static void boot_jump_linux(bootm_headers_t *images, int flag)
 
 	if (!fake) {
 		do_nonsec_virt_switch();
-#ifdef CONFIG_RTK_TEE_SUPPORT			
+#ifdef CONFIG_RTK_TEE_SUPPORT
+		err = fdt_add_mem_rsv(images->ft_addr, TEE_MEM_START_ADDR, TEE_MEM_SIZE);
+		if (err < 0)
+			printf("## WARNING %s: %s\n", __func__, fdt_strerror(err));
 		bl31_entrypoint(kernel_entry, images->ft_addr);
 #else
 		kernel_entry(images->ft_addr, NULL, NULL, NULL); 
