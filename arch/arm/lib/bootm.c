@@ -48,9 +48,8 @@ static ulong get_sp(void)
 	return ret;
 }
 
-#ifdef CONFIG_RTK_TEE_SUPPORT	
 static void (*bl31_entrypoint) (void* para1, void* para2) = (void*)BL31_ENTRY_ADDR;
-#endif
+
 
 void arch_lmb_reserve(struct lmb *lmb)
 {
@@ -81,12 +80,12 @@ void arch_lmb_reserve(struct lmb *lmb)
  */
 static void announce_and_cleanup(int fake)
 {
-#ifdef CONFIG_RTK_TEE_SUPPORT
+if (get_rtd129x_cpu_revision() > RTD129x_CHIP_REVISION_A00)
 	printf("Jump to BL31 entrypoint\n");
-#else
+else{
 	printf("\nStarting %s ...%s\n\n", (getenv("hyp_loadaddr") ? "Hypervisor" : "Kernel"), (fake ?
 		"(fake run for tracing)" : ""));
-#endif
+}
 	bootstage_mark_name(BOOTSTAGE_ID_BOOTM_HANDOFF, "start_kernel");
 #ifdef CONFIG_BOOTSTAGE_FDT
 	bootstage_fdt_add_report();
@@ -209,9 +208,9 @@ static void do_nonsec_virt_switch(void)
 	smp_kick_all_cpus();
 #endif
 	dcache_disable();	/* flush cache before swtiching to EL2 */
-#ifndef CONFIG_RTK_TEE_SUPPORT
+if (get_rtd129x_cpu_revision() < RTD129x_CHIP_REVISION_A01)
 	armv8_switch_to_el2();
-#endif	
+
 #ifdef CONFIG_ARMV8_SWITCH_TO_EL1
 	armv8_switch_to_el1();
 #endif
@@ -296,15 +295,15 @@ static void boot_jump_linux(bootm_headers_t *images, int flag)
 
 	if (!fake) {
 		do_nonsec_virt_switch();
-#ifdef CONFIG_RTK_TEE_SUPPORT
-		int err;
-		err = fdt_add_mem_rsv(images->ft_addr, TEE_MEM_START_ADDR, TEE_MEM_SIZE);
-		if (err < 0)
-			printf("## WARNING %s: %s\n", __func__, fdt_strerror(err));
-		bl31_entrypoint(kernel_entry, images->ft_addr);
-#else
-		kernel_entry(images->ft_addr, NULL, NULL, NULL); 
-#endif
+		if (get_rtd129x_cpu_revision() > RTD129x_CHIP_REVISION_A00){
+			int err;
+			err = fdt_add_mem_rsv(images->ft_addr, TEE_MEM_START_ADDR, TEE_MEM_SIZE);
+			if (err < 0)
+				printf("## WARNING %s: %s\n", __func__, fdt_strerror(err));
+			bl31_entrypoint(kernel_entry, images->ft_addr);
+		}else{
+			kernel_entry(images->ft_addr, NULL, NULL, NULL); 
+		}
 	}
 #else
 	unsigned long machid = gd->bd->bi_arch_number;

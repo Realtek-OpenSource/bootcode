@@ -98,13 +98,17 @@ slave_cpu:
 	ldr	x1, =CPU_RELEASE_ADDR
 	ldr	w0, [x1]
 	cbz	x0, slave_cpu
-#ifdef CONFIG_RTK_TEE_SUPPORT	
-	//jump to bl31 entry
+	//A01 Jump to BL31 at EL3
+ 	ldr x1, =SB2_CHIP_INFO
+ 	ldr	w2, [x1]
+ 	cmp w2, #RTD129x_CHIP_REVISION_A01
+ 	blt JUMP_TO_KERNEL
+JUMP_TO_BL31:
     ldr x30, =BL31_ENTRY_ADDR
 	ret
-#else
+JUMP_TO_KERNEL:
 	br	x0			/* branch to the given address */
-#endif
+
 master_cpu:
 	/* On the master CPU */
 #endif /* CONFIG_ARMV8_MULTIENTRY */
@@ -215,9 +219,14 @@ WEAK(lowlevel_init)
 	/*
 	 * All slaves will enter EL2 and optionally EL1.
 	 */
-#ifndef CONFIG_RTK_TEE_SUPPORT	 
+
+	//A01 Jump to BL31 at EL3
+ 	ldr x1, =SB2_CHIP_INFO
+ 	ldr	w0, [x1]
+ 	cmp w0, #RTD129x_CHIP_REVISION_A01
+ 	bge 2f
 	bl	armv8_switch_to_el2
-#endif	
+
 #ifdef CONFIG_ARMV8_SWITCH_TO_EL1
 	bl	armv8_switch_to_el1
 #endif
