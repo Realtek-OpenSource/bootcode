@@ -1,0 +1,2 @@
+md.c:137:15:allocat_md_cmd	16	static
+md.c:49:5:md_memcpy	32	static

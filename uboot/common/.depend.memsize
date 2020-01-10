@@ -1,0 +1,10 @@
+memsize.o: memsize.c \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/config.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/config_cmd_defaults.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/config_defaults.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/configs/rtd1295_qa_spi.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/configs/rtd1295_common.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/config_cmd_default.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/configs/rtd1295_customized_feature.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/config.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/config_fallbacks.h

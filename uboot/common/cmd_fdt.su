@@ -1,0 +1,4 @@
+cmd_fdt.c:449:12:fdt_valid	16	static
+cmd_fdt.c:638:13:print_data	32	static
+cmd_fdt.c:53:6:set_working_fdt_addr	32	static
+cmd_fdt.c:66:5:do_fdt	64	static

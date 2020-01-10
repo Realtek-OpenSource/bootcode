@@ -1,0 +1,17 @@
+logo_disp_read_edid.c:124:5:comp	0	static
+logo_disp_read_edid.c:79:6:dump_VIDEO_RPC_VOUT_CONFIG_TV_SYSTEM	0	static
+logo_disp_read_edid.c:110:6:dump_raw_edid	16	static
+logo_disp_read_edid.c:129:5:do_cea_modes	16	static
+logo_disp_read_edid.c:172:5:cea_revision	0	static
+logo_disp_read_edid.c:177:5:cea_db_offsets	0	static
+logo_disp_read_edid.c:189:5:rtk_find_cea_extension	4	static
+logo_disp_read_edid.c:214:5:add_cea_modes	24	static
+logo_disp_read_edid.c:244:5:rtk_edid_header_is_valid	4	static
+logo_disp_read_edid.c:255:5:rtk_edid_block_valid	16	static
+logo_disp_read_edid.c:280:5:I2C_Read_Segment	40	static
+logo_disp_read_edid.c:398:6:cbus_hw_init	8	static
+logo_disp_read_edid.c:408:6:cbus_discovery	24	static
+logo_disp_read_edid.c:525:6:set_AVI_Infoframe_Color_Component_and_Chroma_Sample_Format	0	static
+logo_disp_read_edid.c:546:6:set_AVI_Infoframe_Aspect_Ratio	0	static
+logo_disp_read_edid.c:586:6:send_SCDC_cmd	24	static
+logo_disp_read_edid.c:710:5:sink_capability_handler	200	static

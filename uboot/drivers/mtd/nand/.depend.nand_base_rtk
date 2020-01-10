@@ -1,0 +1,26 @@
+nand_base_rtk.o: nand_base_rtk.c \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/types.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/config.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/posix_types.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/stddef.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/posix_types.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/types.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/lib/gcc/arm-linux-gnueabi/4.9.3/include/stdbool.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/mtd/mtd.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/div64.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/mtd/mtd-abi.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/compat.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/io.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/byteorder.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/byteorder/little_endian.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/byteorder/swab.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/byteorder/generic.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/memory.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/armv7.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/bitops.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/bitops.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/proc/system.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/mtd/mtd-abi.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/mtd/rtk_nand.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm-generic/errno.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/arch/rbus/nand_reg.h

@@ -1,0 +1,9 @@
+rtk_i2c-lib.c:109:6:I2C_UnInit	16	static
+rtk_i2c-lib.c:135:6:I2CN_UnInit	20	static
+rtk_i2c-lib.c:224:5:I2C_SetSpeed	16	static
+rtk_i2c-lib.c:31:6:I2C_Init	24	static
+rtk_i2c-lib.c:69:6:I2CN_Init	16	static
+rtk_i2c-lib.c:269:5:I2C_StartXfer	48	static
+rtk_i2c-lib.c:171:5:I2C_Write_EX	24	static
+rtk_i2c-lib.c:198:5:I2C_Read_EX	4	static
+rtk_i2c-lib.c:404:15:I2C_GetBusCount	0	static

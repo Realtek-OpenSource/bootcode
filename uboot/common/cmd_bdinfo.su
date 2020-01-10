@@ -1,0 +1,6 @@
+cmd_bdinfo.c:602:12:do_bdinfo_pll	80	static
+cmd_bdinfo.c:441:14:get_ddr_size	8	static
+cmd_bdinfo.c:491:14:get_ddr_num	0	static
+cmd_bdinfo.c:514:14:get_accessible_ddr_size	8	static
+cmd_bdinfo.c:567:12:do_bdinfo_ddr	40	static
+cmd_bdinfo.c:749:5:do_bdinfo	32	static

@@ -1,0 +1,14 @@
+serial.c:124:12:calc_divisor.isra.0	0	static
+serial.c:158:5:serial_init	8	static
+serial.c:188:1:_serial_putc	16	static
+serial.c:197:1:_serial_putc_raw	0	static
+serial.c:203:1:_serial_puts	16	static
+serial.c:212:1:_serial_getc	8	static
+serial.c:218:1:_serial_tstc	0	static
+serial.c:224:1:_serial_setbrg	8	static
+serial.c:240:1:serial_putc	0	static
+serial.c:254:1:serial_putc_raw	0	static
+serial.c:268:1:serial_puts	0	static
+serial.c:282:1:serial_getc	0	static
+serial.c:296:1:serial_tstc	0	static
+serial.c:310:1:serial_setbrg	0	static

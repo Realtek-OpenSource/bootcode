@@ -1,0 +1,12 @@
+cmd_rtkspi.c:43:13:spi_switch_read_mode	0	static
+cmd_rtkspi.c:110:5:rtkspi_identify	24	static
+cmd_rtkspi.c:225:6:rtkspi_init_regs	8	static
+cmd_rtkspi.c:245:6:rtkspi_init	8	static
+cmd_rtkspi.c:252:6:rtkspi_read32	24	static
+cmd_rtkspi.c:273:6:rtkspi_read32_progress	16	static
+cmd_rtkspi.c:313:6:rtkspi_read32_md	24	static
+cmd_rtkspi.c:339:6:rtkspi_write8	24	static
+cmd_rtkspi.c:377:5:rtkspi_erase	40	static
+cmd_rtkspi.c:679:5:do_rtkspi	24	static
+cmd_rtkspi.c:562:6:rtkspi_fwtable_create	0	static
+cmd_rtkspi.c:660:6:rtkspi_fwtable_parser	0	static

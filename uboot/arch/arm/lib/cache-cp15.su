@@ -1,0 +1,9 @@
+cache-cp15.c:44:13:cp_delay	8	static
+cache-cp15.c:38:6:__arm_init_before_mmu	0	static
+cache-cp15.c:143:13:cache_enable	16	static
+cache-cp15.c:202:6:icache_enable	0	static
+cache-cp15.c:207:6:icache_disable	8	static
+cache-cp15.c:212:5:icache_status	0	static
+cache-cp15.c:234:6:dcache_enable	8	static
+cache-cp15.c:245:6:dcache_disable	16	static
+cache-cp15.c:268:5:dcache_status	0	static

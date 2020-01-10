@@ -1,0 +1,4 @@
+time.c:39:6:udelay	16	static
+time.c:51:6:mdelay	8	static
+time.c:113:6:reset_evaluate_time	0	static
+time.c:130:6:display_evaluate_time	16	static

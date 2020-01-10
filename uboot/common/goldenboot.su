@@ -1,0 +1,4 @@
+goldenboot.c:29:5:copy_2nd_bootloader_and_run	16	static
+goldenboot.c:107:5:is_golden_boot	0	static
+goldenboot.c:123:5:set_golden_magic	0	static
+goldenboot.c:65:5:start_2nd_bootcode_from_golden	16	static

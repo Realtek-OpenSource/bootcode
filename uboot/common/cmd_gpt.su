@@ -1,0 +1,3 @@
+cmd_gpt.c:92:14:extract_val	24	static
+cmd_gpt.c:33:12:extract_env	64	static
+cmd_gpt.c:318:12:do_gpt	96	static

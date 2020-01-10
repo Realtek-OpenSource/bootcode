@@ -1,0 +1,17 @@
+cmd_nvedit.c:627:12:do_env_delete	8	static
+cmd_nvedit.c:112:12:env_print	32	static
+cmd_nvedit.c:583:5:do_env_save	8	static
+cmd_nvedit.c:929:12:do_env	24	static
+cmd_nvedit.c:617:12:do_env_default	8	static
+cmd_nvedit.c:142:5:do_env_print	24	static
+cmd_nvedit.c:102:5:get_env_id	0	static
+cmd_nvedit.c:205:5:_do_env_set	64	static
+cmd_nvedit.c:398:5:do_env_set	0	static
+cmd_nvedit.c:358:5:setenv	24	static
+cmd_nvedit.c:375:5:setenv_ulong	8	static
+cmd_nvedit.c:390:5:setenv_addr	32	static
+cmd_nvedit.c:605:5:envmatch	24	static
+cmd_nvedit.c:527:5:getenv_f	32	static
+cmd_nvedit.c:503:7:getenv	32	static
+cmd_nvedit.c:477:5:do_env_edit	648	static
+cmd_nvedit.c:571:7:getenv_ulong	16	static

@@ -1,0 +1,15 @@
+fat.c:47:13:downcase	0	static
+fat.c:63:12:disk_read	8	static
+fat.c:157:12:dirdelim	0	static
+fat.c:201:14:get_fatent	16	static
+fat.c:300:1:get_cluster	40	dynamic
+fat.c:172:13:get_name	24	static
+fat.c:735:1:read_bootsectandvi	24	static
+fat.c:431:12:slot2str	4	static
+fat.c:468:1:get_vfatname	40	static
+fat.c:72:5:fat_register_device	32	dynamic
+fat.c:813:1:do_fat_read	2560	static
+fat.c:1189:5:file_fat_detectfs	120	static
+fat.c:1252:7:file_fat_ls_first	16	static
+fat.c:1258:5:file_fat_ls	16	static
+fat.c:1263:6:file_fat_read	32	static

@@ -1,0 +1,14 @@
+xhci.c:1001:29:find_trb_seg	4	static
+xhci.c:119:12:handshake	32	static
+xhci.c:245:12:xhci_configure_endpoints	32	static
+xhci.c:224:21:xhci_get_ep_index	0	static
+xhci.c:172:5:xhci_reset	16	static
+xhci.c:526:5:xhci_alloc_device	24	static
+xhci.c:574:5:xhci_check_maxpacket	24	static
+xhci.c:927:1:xhci_submit_int_msg	0	static
+xhci.c:948:1:xhci_submit_bulk_msg	8	static
+xhci.c:1039:6:xhci_find_new_dequeue_state	32	static
+xhci.c:1099:6:xhci_queue_new_dequeue_state	24	static
+xhci.c:1148:1:xhci_submit_control_msg	88	static
+xhci.c:1211:5:xhci_lowlevel_init	32	static
+xhci.c:1286:5:xhci_lowlevel_stop	16	static

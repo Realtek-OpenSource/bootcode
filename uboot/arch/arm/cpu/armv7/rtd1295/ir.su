@@ -1,0 +1,8 @@
+ir.c:67:14:IR_Parsing_key	0	static
+ir.c:100:14:IR_Protocol_Selection	0	static
+ir.c:140:14:IR_Protocol_Extension	0	static
+ir.c:177:14:IR_Sampling_Frequency	0	static
+ir.c:206:14:IR_Control	0	static
+ir.c:252:14:IR_Get_irdvf	0	static
+ir.c:257:6:IR_Set_irdvf	0	static
+ir.c:262:6:IR_init	0	static

@@ -1,0 +1,15 @@
+rtl8168.c:992:12:rtl8168_ephy_read	16	static
+rtl8168.c:972:13:rtl8168_ephy_write	16	static
+rtl8168.c:827:13:mdio_write	24	static
+rtl8168.c:1111:12:rtl8168_recv	24	static
+rtl8168.c:1236:12:rtl8168_send	32	static
+rtl8168.c:1015:12:rtl8168_eri_read.part.8	40	static
+rtl8168.c:1489:1:rtl8168_wait_ll_share_fifo_ready.isra.9	16	static
+rtl8168.c:1415:1:rtl8168_nic_reset	24	static
+rtl8168.c:1477:1:rtl8168_hw_reset	0	static
+rtl8168.c:1356:1:rtl8168_disable_rxdvgate.isra.12	0	static
+rtl8168.c:1061:12:rtl8168_eri_write	40	static
+rtl8168.c:5131:13:rtl8168_halt	24	static
+rtl8168.c:5311:12:rtl8168_init	40	static
+rtl8168.c:2593:6:rtl8168_init_ring_indexes	0	static
+rtl8168.c:5422:5:rtl8168_initialize	32	static

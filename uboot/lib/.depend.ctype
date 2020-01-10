@@ -1,0 +1,2 @@
+ctype.o: ctype.c \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/ctype.h

@@ -1,0 +1,2 @@
+bootparam.c:36:6:get_bootparam	40	static
+bootparam.c:107:5:get_one_step_info	32	static

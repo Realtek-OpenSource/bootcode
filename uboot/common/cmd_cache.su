@@ -1,0 +1,5 @@
+cmd_cache.c:92:12:parse_argv	8	static
+cmd_cache.c:33:13:invalidate_icache_all	0	static
+cmd_cache.c:39:5:do_icache	8	static
+cmd_cache.c:62:13:flush_dcache_all	0	static
+cmd_cache.c:68:5:do_dcache	8	static

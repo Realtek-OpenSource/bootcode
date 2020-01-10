@@ -1,0 +1,5 @@
+hwinit.c:19:14:cortex_rev	0	static
+hwinit.c:33:5:print_cpuinfo	8	static
+hwinit.c:41:6:enable_caches	0	static
+hwinit.c:49:6:v7_outer_cache_enable	0	static
+hwinit.c:54:6:v7_outer_cache_disable	0	static

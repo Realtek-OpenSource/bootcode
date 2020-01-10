@@ -1,0 +1,7 @@
+board.c:24:5:checkboard	8	static
+board.c:35:5:board_init	0	static
+board.c:49:6:dram_init_banksize	8	static
+board.c:75:5:board_eth_init	0	static
+board.c:87:5:misc_init_r	8	static
+board.c:98:5:get_board_rev	0	static
+board.c:107:5:dram_init	8	static

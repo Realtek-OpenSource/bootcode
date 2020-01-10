@@ -1,0 +1,3 @@
+cmd_rtkrng.c:37:14:rtkgen	16	static
+cmd_rtkrng.c:68:6:show_rtkgen	8	static
+cmd_rtkrng.c:77:5:do_rtkrng	16	static

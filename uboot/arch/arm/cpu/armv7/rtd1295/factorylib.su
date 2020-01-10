@@ -1,0 +1,10 @@
+factorylib.c:1245:5:factory_dump_info	8	static
+factorylib.c:1277:5:factory_dump_list	32	static
+factorylib.c:1335:5:factory_delete	32	static
+factorylib.c:1349:5:factory_read_by_index	16	static
+factorylib.c:1365:5:factory_read	16	static
+factorylib.c:1375:5:factory_write	40	static
+factorylib.c:1402:5:factory_save	32	static
+factorylib.c:1295:5:factory_reset	24	static
+factorylib.c:1486:5:do_factory	24	static
+factorylib.c:1447:5:factory_init	64	static

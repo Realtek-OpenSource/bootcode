@@ -1,0 +1,3 @@
+pcb_utils.c:11:6:pcb_gen_kernel_cmd_line	0	static
+pcb_utils.c:59:14:pcb_get_boot_flash_type	0	static
+pcb_utils.c:82:7:pcb_get_boot_flash_type_string	0	static

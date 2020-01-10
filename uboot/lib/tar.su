@@ -1,0 +1,8 @@
+tar.c:104:5:tar_dump_posix_header	24	static
+tar.c:133:14:tar_checksum	0	static
+tar.c:150:5:tar_check_header	16	static
+tar.c:167:6:tar_fill_checksum	8	static
+tar.c:177:6:tar_build_header	16	static
+tar.c:206:5:tar_read_by_index	40	static
+tar.c:251:5:tar_read	40	static
+tar.c:332:6:tar_add_or_delete	56	static

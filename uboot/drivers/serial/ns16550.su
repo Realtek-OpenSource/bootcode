@@ -1,0 +1,7 @@
+io.h:44:28:rtd_inl	0	static
+io.h:71:20:rtd_outl	0	static
+ns16550.c:41:6:NS16550_init	24	static
+ns16550.c:85:6:NS16550_reinit	24	static
+ns16550.c:101:6:NS16550_putc	16	static
+ns16550.c:118:6:NS16550_getc	16	static
+ns16550.c:130:5:NS16550_tstc	8	static

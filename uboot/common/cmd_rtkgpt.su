@@ -1,0 +1,7 @@
+cmd_rtkgpt.c:81:6:fill_one_pte	40	static
+cmd_rtkgpt.c:99:6:fill_GPT_PTES	40	static
+cmd_rtkgpt.c:214:14:rtkgpt_gen	72	dynamic
+cmd_rtkgpt.c:341:6:run_rtkgpt_gen	8	static
+cmd_rtkgpt.c:350:14:rtkgpt_fwtable	48	static
+cmd_rtkgpt.c:505:6:run_rtkgpt_fwtable	8	static
+cmd_rtkgpt.c:514:5:do_rtkgpt	24	static

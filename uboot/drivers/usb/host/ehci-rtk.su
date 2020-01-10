@@ -1,0 +1,5 @@
+ehci-rtk.c:72:12:utmi_wait_register.constprop	16	static
+ehci-rtk.c:117:12:rtk_usb_phy_write.isra.1	24	static
+ehci-rtk.c:152:5:rtk_usb_phy_init	48	static
+ehci-rtk.c:244:5:ehci_hcd_init	56	static
+ehci-rtk.c:271:5:ehci_hcd_stop	0	static

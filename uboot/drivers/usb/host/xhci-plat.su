@@ -1,0 +1,7 @@
+xhci-plat.c:237:12:xhci_usb_utmi_wait_register.constprop	16	static
+xhci-plat.c:86:6:dwc3_set_mode	0	static
+xhci-plat.c:316:6:usb3_phy_setting	32	static
+xhci-plat.c:412:6:rtk_usb3_phy_state	0	static
+xhci-plat.c:506:6:usb2_phy_setting	40	static
+xhci-plat.c:559:5:xhci_hcd_init	104	static
+xhci-plat.c:604:6:xhci_hcd_stop	0	static

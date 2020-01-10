@@ -1,0 +1,6 @@
+cmd_mem2.c:55:5:mtest2_alt_mem	16	static
+cmd_mem2.c:301:5:mtest2_normal	40	static
+cmd_mem2.c:386:5:mtest2_saf	32	static
+cmd_mem2.c:576:5:mtest2_tf	32	static
+cmd_mem2.c:652:5:mtest2_cf	48	static
+cmd_mem2.c:759:5:do_mem_mtest2	24	static

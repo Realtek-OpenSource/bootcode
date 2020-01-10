@@ -1,0 +1,876 @@
+Archive member included because of file (symbol)
+
+/home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+                              flashdev_n.o (__aeabi_uldivmod)
+/home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+                              /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o) (__aeabi_ldiv0)
+/home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+                              /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o) (__udivmoddi4)
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x00000000        0x0 dvrmain.o
+ .note.GNU-stack
+                0x00000000        0x0 util.o
+ .note.GNU-stack
+                0x00000000        0x0 flashdev_n.o
+ .note.GNU-stack
+                0x00000000        0x0 flashdev_s.o
+ .note.GNU-stack
+                0x00000000        0x0 flashdev_e.o
+ .note.GNU-stack
+                0x00000000        0x0 rtkemmc.o
+ .note.GNU-stack
+                0x00000000        0x0 strlen.o
+ .note.GNU-stack
+                0x00000000        0x0 strstr.o
+ .note.GNU-stack
+                0x00000000        0x0 strtoul.o
+ .note.GNU-stack
+                0x00000000        0x0 ctype.o
+ .note.GNU-stack
+                0x00000000        0x0 mcp.o
+ .note.GNU-stack
+                0x00000000        0x0 otp.o
+ .note.GNU-stack
+                0x00000000        0x0 timer.o
+ .note.GNU-stack
+                0x00000000        0x0 cache.o
+ .note.GNU-stack
+                0x00000000        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .note.GNU-stack
+                0x00000000        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+ .note.GNU-stack
+                0x00000000        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .text set to 0x1500000
+LOAD temp_target_array.o
+LOAD start.o
+LOAD dvrmain.o
+LOAD util.o
+LOAD flashdev_n.o
+LOAD flashdev_s.o
+LOAD flashdev_e.o
+LOAD rtkemmc.o
+LOAD strlen.o
+LOAD strstr.o
+LOAD strtoul.o
+LOAD ctype.o
+LOAD mcp.o
+LOAD otp.o
+LOAD timer.o
+LOAD cache.o
+LOAD /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a
+                0x00010000                PROVIDE (__executable_start, 0x10000)
+                0x000100b4                . = (0x10000 + SIZEOF_HEADERS)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn        0x000100b4        0x0
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro .rel.data.rel.ro.* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+                0x000100b4                PROVIDE (__rel_iplt_start, .)
+ *(.rel.iplt)
+ .rel.iplt      0x00000000        0x0 start.o
+                0x000100b4                PROVIDE (__rel_iplt_end, .)
+
+.rela.dyn       0x000100b4        0x0
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+                0x000100b4                PROVIDE (__rela_iplt_start, .)
+ *(.rela.iplt)
+                0x000100b4                PROVIDE (__rela_iplt_end, .)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(SORT(.init))
+
+.plt
+ *(.plt)
+
+.iplt           0x000100b4        0x0
+ *(.iplt)
+ .iplt          0x00000000        0x0 start.o
+
+.text           0x01500000     0x5c00
+ *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ *(.text.hot .text.hot.*)
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x01500000        0x0 temp_target_array.o
+ .text          0x01500000       0x64 start.o
+                0x01500000                start
+                0x01500024                _stack_start
+                0x01500028                _stack_start1
+                0x0150005c                raise
+ .text          0x01500064      0xb34 dvrmain.o
+                0x01500064                align_to_boundary
+                0x0150007c                align_to_boundary_length
+                0x01500094                set_spi_pin_mux
+                0x015000ac                set_nand_pin_mux
+                0x015000c4                set_emmc_freq
+                0x01500100                set_emmc_pin_mux
+                0x01500144                rebuild_function_pointer_from_uboot_to_dvrmain
+                0x015001b0                dvrmain
+ .text          0x01500b98      0x4cc util.o
+                0x01500bc0                sync
+                0x01500bdc                init_uart
+                0x01500c2c                set_focus_uart
+                0x01500c58                print_val
+                0x01500ca4                print_hex
+                0x01500cac                sys_dcache_flush_all
+                0x01500cb0                put_char
+                0x01500ccc                hexstr2int
+                0x01500cd8                simple_malloc
+                0x01500d34                is_hex_digit
+                0x01500d68                memset
+                0x01500dc4                prints
+                0x01500e3c                wait_done
+                0x01500e88                hexdump
+                0x01500f28                set_memory
+                0x01500f40                copy_memory
+                0x01500fcc                compare_memory
+                0x01501004                compare_str
+                0x01501030                swap_endian
+                0x01501038                watchdog_reset
+                0x01501060                __div0
+ .text          0x01501064     0x25e0 flashdev_n.o
+                0x01501c2c                do_erase_n
+                0x01501d58                do_erase_map
+                0x01501dd8                do_write_n
+                0x015020fc                do_write_map
+                0x015022f0                do_identify_n
+                0x0150269c                do_init_n
+                0x0150297c                write_bbt
+                0x01502a6c                check_build_bbt
+                0x01502d68                do_exit_n
+                0x0150310c                get_env_n
+                0x0150325c                save_env_n
+                0x01503398                do_read_n
+ .text          0x01503644      0x798 flashdev_s.o
+                0x01503670                _sync
+                0x01503688                spi_switch_read_mode
+                0x015036ac                spi_hexdump
+                0x01503714                do_erase_s
+                0x01503a78                do_write_s
+                0x01503b18                do_identify_s
+                0x01503d60                do_init_s
+                0x01503dc4                do_exit_s
+ .text          0x01503ddc      0x194 flashdev_e.o
+                0x01503ddc                do_erase_e
+                0x01503de4                do_write_e
+                0x01503e14                do_read_e
+                0x01503e3c                do_identify_e
+                0x01503e4c                do_init_e
+                0x01503e68                do_exit_e
+                0x01503e6c                do_hide_hwsetting_e
+ .text          0x01503f70      0xc90 rtkemmc.o
+                0x01503f70                check_error
+                0x015040a0                reset_ip
+                0x015040b4                emmc_send_cmd_get_rsp
+                0x01504160                frequency
+                0x015042b0                switch_bus
+                0x015043dc                kylin_cr_init
+                0x015046e8                rtk_eMMC_init
+                0x01504810                switch_speed
+                0x015048b8                IsAddressSRAM
+                0x015048cc                make_ip_des
+                0x01504948                emmc_read_write_ip
+                0x01504a90                rtk_eMMC_write
+                0x01504b48                rtk_eMMC_read
+ .text          0x01504c00       0x1c strlen.o
+                0x01504c00                strlen
+ .text          0x01504c1c       0x84 strstr.o
+                0x01504c1c                strstr
+ .text          0x01504ca0      0x160 strtoul.o
+                0x01504ca0                strtoul
+ .text          0x01504e00        0x0 ctype.o
+ .text          0x01504e00      0x640 mcp.o
+                0x01504f64                AES_CBC_decrypt
+                0x01504ff4                AES_CBC_encrypt
+                0x01505084                AES_ECB_decrypt
+                0x0150511c                AES_ECB_encrypt
+                0x015051b4                AES_hash_one
+                0x0150522c                AES_hash
+                0x01505370                SHA1_hash
+ .text          0x01505440       0xa0 otp.o
+                0x01505440                get_boot_flash_type_from_gpio
+                0x01505480                OTP_JUDGE_BIT
+                0x015054b0                get_secure_type_from_efuse
+                0x015054cc                check_secure_boot
+                0x015054d4                get_secure_type_name
+ .text          0x015054e0      0x11c timer.o
+                0x015054e0                InitTimer
+                0x01505534                DisableTimer
+                0x01505560                SystemTimeout
+                0x01505590                mdelay
+                0x015055c8                udelay
+ .text          0x015055fc      0x1b8 cache.o
+                0x0150560c                v7_maint_dcache_all
+                0x015056d8                arm_init_before_mmu
+                0x01505700                sys_dcache_flush_MVA
+                0x01505738                enable_dcache
+                0x01505754                disable_mmu_cache
+                0x0150578c                disable_dcache
+ .text          0x015057b4       0x3c /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+                0x015057b4                __aeabi_uldivmod
+ .text          0x015057f0       0x10 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+                0x015057f0                __aeabi_ldiv0
+                0x015057f0                __aeabi_idiv0
+ .text          0x01505800      0x400 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+                0x01505800                __udivmoddi4
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+ *(.v4_bx)
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.fini
+ *(SORT(.fini))
+                0x01505c00                PROVIDE (__etext, .)
+                0x01505c00                PROVIDE (_etext, .)
+                0x01505c00                PROVIDE (etext, .)
+
+.rodata         0x01505c00     0x1f6d
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.1
+                0x01505c00      0x26a dvrmain.o
+                                0x271 (size before relaxing)
+ .rodata        0x01505e6a        0x8 util.o
+ .rodata.str1.1
+                0x01505e72       0x19 util.o
+                                 0x1d (size before relaxing)
+ *fill*         0x01505e8b        0x5 
+ .rodata        0x01505e90      0xa00 flashdev_n.o
+ .rodata.str1.1
+                0x01506890      0x78b flashdev_n.o
+                                0x78d (size before relaxing)
+ *fill*         0x0150701b        0x1 
+ .rodata        0x0150701c      0x384 flashdev_s.o
+ .rodata.str1.1
+                0x015073a0      0x3b5 flashdev_s.o
+                                0x3b7 (size before relaxing)
+ .rodata.str1.1
+                0x01507755       0x74 flashdev_e.o
+ *fill*         0x015077c9        0x3 
+ .rodata        0x015077cc       0xe4 rtkemmc.o
+                0x015077cc                clk_tlb
+                0x015077ec                bit_tlb
+                0x015077fc                state_tlb
+                0x01507820                tacc_mant
+                0x01507860                tacc_exp
+                0x01507880                tran_mant
+                0x01507890                tran_exp
+ .rodata.str1.1
+                0x015078b0       0x9e rtkemmc.o
+ *fill*         0x0150794e        0x2 
+ .rodata.str1.4
+                0x01507950      0x20c rtkemmc.o
+                                0x210 (size before relaxing)
+ .rodata.str1.1
+                0x01507b5c       0x11 otp.o
+
+.rodata1
+ *(.rodata1)
+
+.ARM.extab      0x01507b6d        0x0
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ .ARM.extab     0x01507b6d        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+                0x01507b6d                PROVIDE (__exidx_start, .)
+
+.ARM.exidx      0x01507b70        0x8
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+ .ARM.exidx     0x01507b70        0x8 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+                0x01507b78                PROVIDE (__exidx_end, .)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+                0x01507b78                . = (ALIGN (0x10000) - ((0x10000 - .) & 0xffff))
+                0x01517b78                . = DATA_SEGMENT_ALIGN (0x10000, 0x1000)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x01517b78        0x0
+                0x01517b78                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x01517b78                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x01517b78        0x0
+                0x01517b78                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x01517b78                PROVIDE (__init_array_end, .)
+
+.fini_array     0x01517b78        0x0
+                0x01517b78                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*))
+ *(.fini_array)
+                0x01517b78                PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+                0x01517b78                . = DATA_SEGMENT_RELRO_END (., 0x0)
+
+.got            0x01517b78        0x0
+ *(.got.plt)
+ *(.igot.plt)
+ .igot.plt      0x00000000        0x0 start.o
+ *(.got)
+ *(.igot)
+
+.data           0x01517b78    0xae360
+                0x01517b78                PROVIDE (__data_start, .)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x01517b78    0xae244 temp_target_array.o
+                0x01517b78                resetrom
+                0x0152aa40                resetrom_end
+                0x0152aa44                mips_resetrom
+                0x0152b084                mips_resetrom_end
+                0x0152b088                hwsetting
+                0x0152b6c8                hwsetting_end
+                0x0152b6cc                hasharray
+                0x0158a60c                hasharray_end
+                0x0158a610                hasharray64
+                0x015b0928                hasharray64_end
+                0x015b092c                signature
+                0x015b094c                signature_end
+                0x015b0950                bootcode2_boot_hasharray_end
+                0x015b0950                bootcode2_boot_hasharray
+                0x015b0954                bootcode2_boot_signature
+                0x015b0954                bootcode2_boot_signature_end
+                0x015b0958                ecbarray_end
+                0x015b0958                ecbarray
+                0x015b095c                linux_rescue_hasharray_end
+                0x015b095c                linux_rescue_hasharray
+                0x015b0960                linux_rescue_signature_end
+                0x015b0960                linux_rescue_signature
+                0x015b0964                fsbl
+                0x015c0ce4                fsbl_end
+                0x015c0ce8                fsbl_signature
+                0x015c0d08                fsbl_signature_end
+                0x015c0d0c                fsbl_os
+                0x015c0d0c                fsbl_os_end
+                0x015c0d10                fsbl_os_signature
+                0x015c0d10                fsbl_os_signature_end
+                0x015c0d14                bl31
+                0x015c5d54                bl31_end
+                0x015c5d58                bl31_signature
+                0x015c5d78                bl31_signature_end
+                0x015c5d7c                rsa_pub
+                0x015c5d7c                rsa_pub_end
+                0x015c5d80                Kpublic_fw
+                0x015c5d80                Kpublic_fw_end
+                0x015c5d84                Kpublic_tee
+                0x015c5d84                Kpublic_tee_end
+                0x015c5d88                Kpublic_fw_signature
+                0x015c5d88                Kpublic_fw_signature_end
+                0x015c5d8c                Kpublic_tee_signature
+                0x015c5d8c                Kpublic_tee_signature_end
+                0x015c5d90                cbc_linux
+                0x015c5d90                cbc_linux_end
+                0x015c5d94                hwsetting_sig_image_end
+                0x015c5d94                hwsetting_sig_image
+                0x015c5d98                dcas_key_sig_image_end
+                0x015c5d98                dcas_key_sig_image
+                0x015c5d9c                logo_end
+                0x015c5d9c                logo
+                0x015c5da0                logo2
+                0x015c5da0                logo2_end
+                0x015c5da4                logo3_end
+                0x015c5da4                logo3
+                0x015c5da8                logo4
+                0x015c5da8                logo4_end
+                0x015c5dac                logo5_end
+                0x015c5dac                logo5
+                0x015c5db0                logo6
+                0x015c5db0                logo6_end
+                0x015c5db4                logo7
+                0x015c5db4                logo7_end
+                0x015c5db8                logo8
+                0x015c5db8                logo8_end
+ .data          0x015c5dbc        0x0 start.o
+ .data          0x015c5dbc        0x0 dvrmain.o
+ .data          0x015c5dbc        0x8 util.o
+                0x015c5dbc                UartReg
+ .data          0x015c5dc4        0x0 flashdev_n.o
+ .data          0x015c5dc4        0x0 flashdev_s.o
+ .data          0x015c5dc4        0x0 flashdev_e.o
+ *fill*         0x015c5dc4        0x4 
+ .data          0x015c5dc8       0x10 rtkemmc.o
+                0x015c5dd0                rw_descriptor
+ .data          0x015c5dd8        0x0 strlen.o
+ .data          0x015c5dd8        0x0 strstr.o
+ .data          0x015c5dd8        0x0 strtoul.o
+ .data          0x015c5dd8      0x100 ctype.o
+                0x015c5dd8                _ctype
+ .data          0x015c5ed8        0x0 mcp.o
+ .data          0x015c5ed8        0x0 otp.o
+ .data          0x015c5ed8        0x0 timer.o
+ .data          0x015c5ed8        0x0 cache.o
+ .data          0x015c5ed8        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .data          0x015c5ed8        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+ .data          0x015c5ed8        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.data1
+ *(.data1)
+                0x015c5ed8                _edata = .
+                0x015c5ed8                PROVIDE (edata, .)
+                0x015c5ed8                . = .
+                0x015c5ed8                __bss_start = .
+                0x015c5ed8                __bss_start__ = .
+
+.bss            0x015c5ed8      0x110
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x015c5ed8        0x0 temp_target_array.o
+ .bss           0x015c5ed8        0x0 start.o
+ .bss           0x015c5ed8       0x10 dvrmain.o
+                0x015c5ed8                rtprintf
+                0x015c5edc                rtflush_dcache_all
+                0x015c5ee0                rtflush_cache
+                0x015c5ee4                verify_after_write
+                0x015c5ee5                force_secure
+                0x015c5ee6                test_secure
+                0x015c5ee7                noreset
+ .bss           0x015c5ee8        0x8 util.o
+                0x015c5eec                sys_l2cache_enabled
+ .bss           0x015c5ef0       0x3c flashdev_n.o
+                0x015c5ef8                total_chip_num
+                0x015c5efc                pages_per_chip
+                0x015c5f00                pages_per_block
+                0x015c5f08                blocks_per_flash
+ .bss           0x015c5f2c        0x0 flashdev_s.o
+ .bss           0x015c5f2c        0x0 flashdev_e.o
+ .bss           0x015c5f2c       0xb8 rtkemmc.o
+                0x015c5f2c                emmc_card
+                0x015c5fdc                dummy_512B
+                0x015c5fe0                cr_int_status_reg
+ .bss           0x015c5fe4        0x0 strlen.o
+ .bss           0x015c5fe4        0x0 strstr.o
+ .bss           0x015c5fe4        0x0 strtoul.o
+ .bss           0x015c5fe4        0x0 ctype.o
+ .bss           0x015c5fe4        0x4 mcp.o
+                0x015c5fe4                mcp_dscpt_addr
+ .bss           0x015c5fe8        0x0 otp.o
+ .bss           0x015c5fe8        0x0 timer.o
+ .bss           0x015c5fe8        0x0 cache.o
+ .bss           0x015c5fe8        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .bss           0x015c5fe8        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+ .bss           0x015c5fe8        0x0 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+ *(COMMON)
+                0x015c5fe8                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x015c5fe8                _bss_end__ = .
+                0x015c5fe8                __bss_end__ = .
+                0x015c5fe8                . = ALIGN (0x4)
+                0x015c5fe8                . = SEGMENT_START ("ldata-segment", .)
+                0x015c5fe8                . = ALIGN (0x4)
+                0x015c5fe8                __end__ = .
+                0x015c5fe8                _end = .
+                0x015c5fe8                PROVIDE (end, .)
+                0x015c5fe8                . = DATA_SEGMENT_END (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x41
+ *(.comment)
+ .comment       0x00000000       0x41 dvrmain.o
+                                 0x42 (size before relaxing)
+ .comment       0x00000000       0x42 util.o
+ .comment       0x00000000       0x42 flashdev_n.o
+ .comment       0x00000000       0x42 flashdev_s.o
+ .comment       0x00000000       0x42 flashdev_e.o
+ .comment       0x00000000       0x42 rtkemmc.o
+ .comment       0x00000000       0x42 strlen.o
+ .comment       0x00000000       0x42 strstr.o
+ .comment       0x00000000       0x42 strtoul.o
+ .comment       0x00000000       0x42 ctype.o
+ .comment       0x00000000       0x42 mcp.o
+ .comment       0x00000000       0x42 otp.o
+ .comment       0x00000000       0x42 timer.o
+ .comment       0x00000000       0x42 cache.o
+ .comment       0x00000000       0x42 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x25 temp_target_array.o
+ .ARM.attributes
+                0x00000025       0x25 start.o
+ .ARM.attributes
+                0x0000004a       0x3a dvrmain.o
+ .ARM.attributes
+                0x00000084       0x3a util.o
+ .ARM.attributes
+                0x000000be       0x3a flashdev_n.o
+ .ARM.attributes
+                0x000000f8       0x3a flashdev_s.o
+ .ARM.attributes
+                0x00000132       0x3a flashdev_e.o
+ .ARM.attributes
+                0x0000016c       0x3a rtkemmc.o
+ .ARM.attributes
+                0x000001a6       0x3a strlen.o
+ .ARM.attributes
+                0x000001e0       0x3a strstr.o
+ .ARM.attributes
+                0x0000021a       0x3a strtoul.o
+ .ARM.attributes
+                0x00000254       0x3a ctype.o
+ .ARM.attributes
+                0x0000028e       0x3a mcp.o
+ .ARM.attributes
+                0x000002c8       0x3a otp.o
+ .ARM.attributes
+                0x00000302       0x3a timer.o
+ .ARM.attributes
+                0x0000033c       0x3a cache.o
+ .ARM.attributes
+                0x00000376       0x23 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .ARM.attributes
+                0x00000399       0x23 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+ .ARM.attributes
+                0x000003bc       0x33 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x218
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 dvrmain.o
+ .debug_aranges
+                0x00000020       0x20 util.o
+ .debug_aranges
+                0x00000040       0x20 flashdev_n.o
+ .debug_aranges
+                0x00000060       0x20 flashdev_s.o
+ .debug_aranges
+                0x00000080       0x20 flashdev_e.o
+ .debug_aranges
+                0x000000a0       0x20 rtkemmc.o
+ .debug_aranges
+                0x000000c0       0x20 strlen.o
+ .debug_aranges
+                0x000000e0       0x20 strstr.o
+ .debug_aranges
+                0x00000100       0x20 strtoul.o
+ .debug_aranges
+                0x00000120       0x18 ctype.o
+ .debug_aranges
+                0x00000138       0x20 mcp.o
+ .debug_aranges
+                0x00000158       0x20 otp.o
+ .debug_aranges
+                0x00000178       0x20 timer.o
+ .debug_aranges
+                0x00000198       0x20 cache.o
+ .debug_aranges
+                0x000001b8       0x20 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .debug_aranges
+                0x000001d8       0x20 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+ .debug_aranges
+                0x000001f8       0x20 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0xdf5f
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000     0x1d8e dvrmain.o
+ .debug_info    0x00001d8e      0xe5e util.o
+ .debug_info    0x00002bec     0x5e88 flashdev_n.o
+ .debug_info    0x00008a74     0x169f flashdev_s.o
+ .debug_info    0x0000a113      0x845 flashdev_e.o
+ .debug_info    0x0000a958     0x177a rtkemmc.o
+ .debug_info    0x0000c0d2       0xab strlen.o
+ .debug_info    0x0000c17d       0xc7 strstr.o
+ .debug_info    0x0000c244      0x143 strtoul.o
+ .debug_info    0x0000c387       0x4d ctype.o
+ .debug_info    0x0000c3d4      0x9eb mcp.o
+ .debug_info    0x0000cdbf      0x1b6 otp.o
+ .debug_info    0x0000cf75      0x311 timer.o
+ .debug_info    0x0000d286      0x730 cache.o
+ .debug_info    0x0000d9b6       0xb4 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .debug_info    0x0000da6a       0xb8 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+ .debug_info    0x0000db22      0x43d /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.debug_abbrev   0x00000000     0x1f24
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x387 dvrmain.o
+ .debug_abbrev  0x00000387      0x3bf util.o
+ .debug_abbrev  0x00000746      0x47f flashdev_n.o
+ .debug_abbrev  0x00000bc5      0x33b flashdev_s.o
+ .debug_abbrev  0x00000f00      0x23b flashdev_e.o
+ .debug_abbrev  0x0000113b      0x394 rtkemmc.o
+ .debug_abbrev  0x000014cf       0x74 strlen.o
+ .debug_abbrev  0x00001543       0x90 strstr.o
+ .debug_abbrev  0x000015d3       0xc0 strtoul.o
+ .debug_abbrev  0x00001693       0x3e ctype.o
+ .debug_abbrev  0x000016d1      0x2b9 mcp.o
+ .debug_abbrev  0x0000198a       0xf1 otp.o
+ .debug_abbrev  0x00001a7b      0x147 timer.o
+ .debug_abbrev  0x00001bc2      0x21f cache.o
+ .debug_abbrev  0x00001de1       0x14 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .debug_abbrev  0x00001df5       0x14 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+ .debug_abbrev  0x00001e09      0x11b /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.debug_line     0x00000000     0x25d5
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x00000000      0x4b1 dvrmain.o
+ .debug_line    0x000004b1      0x227 util.o
+ .debug_line    0x000006d8      0xca2 flashdev_n.o
+ .debug_line    0x0000137a      0x3fb flashdev_s.o
+ .debug_line    0x00001775      0x10f flashdev_e.o
+ .debug_line    0x00001884      0x354 rtkemmc.o
+ .debug_line    0x00001bd8       0x3b strlen.o
+ .debug_line    0x00001c13       0x55 strstr.o
+ .debug_line    0x00001c68       0xfd strtoul.o
+ .debug_line    0x00001d65       0x28 ctype.o
+ .debug_line    0x00001d8d      0x281 mcp.o
+ .debug_line    0x0000200e       0xb8 otp.o
+ .debug_line    0x000020c6       0xf2 timer.o
+ .debug_line    0x000021b8      0x1f2 cache.o
+ .debug_line    0x000023aa       0x6a /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .debug_line    0x00002414       0x6d /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_dvmd_lnx.o)
+ .debug_line    0x00002481      0x154 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.debug_frame    0x00000000      0xddc
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xac dvrmain.o
+ .debug_frame   0x000000ac      0x1f4 util.o
+ .debug_frame   0x000002a0      0x3cc flashdev_n.o
+ .debug_frame   0x0000066c      0x110 flashdev_s.o
+ .debug_frame   0x0000077c       0xb0 flashdev_e.o
+ .debug_frame   0x0000082c      0x194 rtkemmc.o
+ .debug_frame   0x000009c0       0x20 strlen.o
+ .debug_frame   0x000009e0       0x34 strstr.o
+ .debug_frame   0x00000a14       0x34 strtoul.o
+ .debug_frame   0x00000a48      0x18c mcp.o
+ .debug_frame   0x00000bd4       0x68 otp.o
+ .debug_frame   0x00000c3c       0x70 timer.o
+ .debug_frame   0x00000cac       0xd0 cache.o
+ .debug_frame   0x00000d7c       0x2c /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00000da8       0x34 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.debug_str      0x00000000     0x2977
+ *(.debug_str)
+ .debug_str     0x00000000     0x1390 dvrmain.o
+                               0x14c6 (size before relaxing)
+ .debug_str     0x00001390      0x2c9 util.o
+                                0x59d (size before relaxing)
+ .debug_str     0x00001659      0x7dc flashdev_n.o
+                                0xb9d (size before relaxing)
+ .debug_str     0x00001e35       0x76 flashdev_s.o
+                                0x387 (size before relaxing)
+ .debug_str     0x00001eab      0x2ab flashdev_e.o
+                                0x505 (size before relaxing)
+ .debug_str     0x00002156      0x2a2 rtkemmc.o
+                                0x717 (size before relaxing)
+ .debug_str     0x000023f8        0x9 strlen.o
+                                0x1e0 (size before relaxing)
+ .debug_str     0x00002401       0x10 strstr.o
+                                0x1e0 (size before relaxing)
+ .debug_str     0x00002411       0x26 strtoul.o
+                                0x203 (size before relaxing)
+ .debug_str     0x00002437        0x8 ctype.o
+                                0x16d (size before relaxing)
+ .debug_str     0x0000243f       0xda mcp.o
+                                0x349 (size before relaxing)
+ .debug_str     0x00002519       0xae otp.o
+                                0x2b2 (size before relaxing)
+ .debug_str     0x000025c7       0x77 timer.o
+                                0x25c (size before relaxing)
+ .debug_str     0x0000263e      0x17f cache.o
+                                0x3c1 (size before relaxing)
+ .debug_str     0x000027bd      0x1ba /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+                                0x267 (size before relaxing)
+
+.debug_loc      0x00000000     0x6f9d
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x49c dvrmain.o
+ .debug_loc     0x0000049c      0x779 util.o
+ .debug_loc     0x00000c15     0x2fbc flashdev_n.o
+ .debug_loc     0x00003bd1      0xad2 flashdev_s.o
+ .debug_loc     0x000046a3      0x2c2 flashdev_e.o
+ .debug_loc     0x00004965      0x737 rtkemmc.o
+ .debug_loc     0x0000509c       0x4a strlen.o
+ .debug_loc     0x000050e6       0x7a strstr.o
+ .debug_loc     0x00005160      0x1f8 strtoul.o
+ .debug_loc     0x00005358      0xb71 mcp.o
+ .debug_loc     0x00005ec9      0x165 otp.o
+ .debug_loc     0x0000602e      0x239 timer.o
+ .debug_loc     0x00006267      0x3b9 cache.o
+ .debug_loc     0x00006620      0x97d /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000      0x7e8
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x30 util.o
+ .debug_ranges  0x00000030      0x538 flashdev_n.o
+ .debug_ranges  0x00000568      0x130 flashdev_s.o
+ .debug_ranges  0x00000698       0xa0 rtkemmc.o
+ .debug_ranges  0x00000738       0x30 mcp.o
+ .debug_ranges  0x00000768       0x80 /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/bin/../lib/gcc/arm-linux-gnueabi/4.9.3/armv8-a/libgcc.a(_udivmoddi4.o)
+
+.debug_macro
+ *(.debug_macro)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(dvrboot.exe elf32-littlearm)

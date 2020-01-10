@@ -1,0 +1,4 @@
+rt_gpio.c:10:5:getGPIO	16	static
+rt_gpio.c:55:5:setGPIO	16	static
+rt_gpio.c:110:5:getISOGPIO	16	static
+rt_gpio.c:139:5:setISOGPIO	16	static

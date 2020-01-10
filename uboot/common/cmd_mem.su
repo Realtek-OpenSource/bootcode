@@ -1,0 +1,3 @@
+cmd_mem.c:186:5:do_mem_mw	24	static
+cmd_mem.c:59:5:do_mem_md	56	static
+cmd_mem.c:642:5:do_mem_mtest	40	static

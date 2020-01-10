@@ -1,0 +1,4 @@
+cpu.c:41:6:save_boot_params_default	0	static
+cpu.c:48:5:cleanup_before_linux	8	static
+cpu.c:92:5:cleanup_before_bootcode	0	static
+cpu.c:96:5:cleanup_before_dvrbootexe	0	static

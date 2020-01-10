@@ -1,0 +1,3 @@
+clocks.c:19:6:enable_clock	32	static
+clocks.c:85:5:GPU_speed_ID_supported	0	static
+clocks.c:95:5:clock_init	8	static

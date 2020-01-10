@@ -1,0 +1,8 @@
+cmd_usb.c:43:14:usb_get_class_desc	0	static
+cmd_usb.c:69:13:usb_display_class_sub	16	static
+cmd_usb.c:272:27:usb_find_device	16	static
+cmd_usb.c:311:13:usb_show_tree_graph	40	static
+cmd_usb.c:151:13:usb_display_string	1096	static
+cmd_usb.c:252:13:usb_display_config	40	static
+cmd_usb.c:161:13:usb_display_desc	32	static
+cmd_usb.c:459:12:do_usb	88	static

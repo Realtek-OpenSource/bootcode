@@ -1,0 +1,3 @@
+cmd_uart_write.c:72:5:do_uart_w_mac	16	static
+cmd_uart_write.c:111:5:do_uart_w_sn	16	static
+cmd_uart_write.c:4:12:do_uart_w	24	static

@@ -1,0 +1,6 @@
+host-wrapper.c:57:1:submit_int_msg	4	static
+host-wrapper.c:72:1:submit_bulk_msg	0	static
+host-wrapper.c:87:1:submit_control_msg	4	static
+host-wrapper.c:101:5:usb_alloc_device	0	static
+host-wrapper.c:280:5:usb_lowlevel_stop	0	static
+host-wrapper.c:297:5:usb_lowlevel_init	24	static

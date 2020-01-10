@@ -1,0 +1,17 @@
+rtk_ahsata.c:990:13:wr_reg	0	static
+bitops.h:12:19:generic_ffs.part.0	0	static
+rtk_ahsata.c:426:12:ahci_exec_ata_cmd	40	static
+rtk_ahsata.c:693:12:dwc_ahsata_rw_cmd_ext	64	static
+rtk_ahsata.c:646:12:dwc_ahsata_rw_cmd	64	static
+rtk_ahsata.c:566:5:init_sata	72	static
+rtk_ahsata.c:677:6:dwc_ahsata_flush_cache	48	static
+rtk_ahsata.c:729:5:dwc_ahsata_rw_ncq_cmd	64	static
+rtk_ahsata.c:771:6:dwc_ahsata_flush_cache_ext	48	static
+rtk_ahsata.c:800:5:ata_low_level_rw_lba48	40	static
+rtk_ahsata.c:834:5:ata_low_level_rw_lba28	40	static
+rtk_ahsata.c:870:7:sata_read	16	static
+rtk_ahsata.c:883:7:sata_write	24	static
+rtk_ahsata.c:909:7:rtk_sata_read	0	static
+rtk_ahsata.c:914:7:rtk_sata_write	0	static
+rtk_ahsata.c:921:5:scan_sata	168	static
+rtk_ahsata.c:1118:6:sata_init	24	static

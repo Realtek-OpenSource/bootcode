@@ -1,0 +1,4 @@
+mem.c:8:7:malloc_noncache	16	static
+mem.c:26:7:malloc_noncache_align	16	static
+mem.c:49:5:mem_malloc_noncache_check	0	static
+mem.c:57:6:mem_malloc_noncache_init	0	static

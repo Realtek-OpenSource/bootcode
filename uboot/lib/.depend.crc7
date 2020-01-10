@@ -1,0 +1,9 @@
+crc7.o: crc7.c \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/types.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/config.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/posix_types.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/stddef.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/posix_types.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/asm/types.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/tmp/asdk-4.9.3-a53-EL-3.10-g2.19-a32nt-150615/lib/gcc/arm-linux-gnueabi/4.9.3/include/stdbool.h \
+ /home/fae/nas/svn/1295/SPI_bootcode/bootcode/uboot/include/linux/crc7.h

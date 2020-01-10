@@ -1,0 +1,4 @@
+part_dos.c:102:13:print_partition_extended	40	static
+part_dos.c:87:5:test_part_dos	8	static
+part_dos.c:259:6:print_part_dos	8	static
+part_dos.c:265:5:get_partition_info_dos	32	static
