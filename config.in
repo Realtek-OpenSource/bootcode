@@ -1,0 +1,568 @@
+mainmenu_name 'Realtek SD5 Bootloader Configuration'
+
+if [ "$CONFIG_MIPS" = "y" ]; then
+	string 'MIPS Toolchain Path Prefix' CONFIG_MIPS_GCC_PATH_PREFIX /msdk-4.4.7-1004k-EB-3.18-u0.9.33-m32t-150902/bin/msdk-linux-
+else
+	string 'Toolchain Path Prefix' CONFIG_GCC_PATH_PREFIX /rsdk-1.5.6-5281-EB-2.6.30-0.9.30.3-110915/bin/rsdk-linux-
+fi
+
+choice 'Platform' \
+"RTL8676 CONFIG_RTL8676 \
+	 RTL8676S CONFIG_RTL8676S \
+	 RTL8685  CONFIG_RTL8685 \
+	 RTL8685S CONFIG_RTL8685S \
+	 RTL8685SB CONFIG_RTL8685SB" RTL8676
+
+if [ "$CONFIG_RTL8676" = "y" ]; then
+	define_string CONFIG_SOC_NAME "rtl8676"
+fi
+
+if [ "$CONFIG_RTL8676S" = "y" ]; then
+	define_string CONFIG_SOC_NAME "rtl8676s"
+fi
+
+if [ "$CONFIG_RTL8685" = "y" ]; then
+	define_string CONFIG_SOC_NAME "rtl8685"
+	define_bool   CONFIG_RTL8685_PERI y
+fi
+
+if [ "$CONFIG_RTL8685S" = "y" ]; then
+	define_string CONFIG_SOC_NAME "rtl8685s"
+	define_bool   CONFIG_RTL8685_PERI y
+fi
+
+if [ "$CONFIG_RTL8685SB" = "y" ]; then
+	define_string CONFIG_SOC_NAME "rtl8685sb"
+	define_bool   CONFIG_RTL8685_PERI y
+	choice 'CPU Type' \
+	"RLX CONFIG_RLX \
+	 MIPS CONFIG_MIPS" RLX
+fi
+
+mainmenu_option next_comment
+comment 'Initialization Options'
+
+choice 'Flash Type' \
+	"NAND 		CONFIG_NAND_FLASH \
+	SPI 		CONFIG_SPI_FLASH \
+	SPI_NAND 	CONFIG_SPI_NAND_FLASH \
+	NONE 		CONFIG_NO_FLASH" NAND
+if [ "$CONFIG_NAND_FLASH" = "y" ]; then
+	choice 'Flash Page Type' \
+		" PAGE_512 CONFIG_NAND_PAGE_512 \
+		  PAGE_2K  CONFIG_NAND_PAGE_2K" PAGE_2K
+	choice 'Bad Block Table Type' \
+		" Normal CONFIG_RTK_NORMAL_BBT \
+		  Remapping  CONFIG_RTK_REMAP_BBT" Normal
+if [ "$CONFIG_RTK_NORMAL_BBT" = "y" ]; then
+	hex  'Bad block table positions (hex)' CONFIG_NORMAL_BBT_POSITION 0x2000000
+fi
+	bool 'Check Header Support' CONFIG_CHECK_HDR
+	bool 'Check the validity of vm.img' CONFIG_IMAGE_HEADER_CHECK
+fi
+if [ "$CONFIG_SPI_NAND_FLASH" = "y" ]; then
+	choice 'Flash Page Type' \
+	" PAGE_2K CONFIG_NAND_PAGE_2K " PAGE_2K
+	choice 'Bad Block Table Type' \
+		" Normal CONFIG_RTK_NORMAL_BBT \
+                  Remapping  CONFIG_RTK_REMAP_BBT" Normal
+if [ "$CONFIG_RTK_NORMAL_BBT" = "y" ]; then
+        hex  'Bad block table positions (hex)' CONFIG_NORMAL_BBT_POSITION 0x8000000
+fi
+        bool 'Check Header Support' CONFIG_CHECK_HDR
+        bool 'Check the validity of vm.img' CONFIG_IMAGE_HEADER_CHECK
+fi
+if [  "$CONFIG_NO_FLASH" = "y" ]; then
+	define_bool CONFIG_NO_HTTP_SERVER y
+	define_bool CONFIG_NO_NET y
+fi
+  
+if [ "$CONFIG_SPI_FLASH" = "y" ]; then
+	choice 'Root Image Policy' \
+		"Single-image CONFIG_IMAGE_SINGLE \
+		Dual-image CONFIG_IMAGE_DUAL" Single
+fi
+
+choice 'Flash Size - Default' \
+" 2MB CONFIG_FLASH_2M \
+  4MB CONFIG_FLASH_4M \
+ 16MB CONFIG_FLASH_16M" 4MB
+ 
+choice 'Console ' \
+"UART0 CONFIG_UART0 \
+ UART1 CONFIG_UART1"  UART0 
+ 
+choice 'Action when boot failed' \
+" Upgrade_via_httpd CONFIG_FAILRUN_HTTPD \
+  Upgrade_via_bootp CONFIG_FAILRUN_BOOTP \
+  Load_via_bootp     CONFIG_FAILRUN_BOOTM" Upgrade_via_httpd
+ 
+bool 'SQUASHFSv4 Support' CONFIG_SQUASHFS_V4
+ 
+comment 'OSK Support'
+bool 'OSK Application Support' CONFIG_OSK_APP_SUPPORT
+bool 'Multicast Upgrade Support' SUPPORT_MULT_UPGRADE
+bool 'CONFIG OSK DUAL IMAGE' CONFIG_OSK_CT_DUAL_IMAGE
+#bool 'Config File Encrypt' CONFIG_CONFIG_FILE_ENCRYPT
+if [ "$CONFIG_OSK_APP_SUPPORT" = "y" ]; then
+hex 'Application Address' BOARD_PARAM_APP bfc20000
+fi
+
+endmenu
+
+mainmenu_option next_comment
+comment 'External Switch Support'
+if [ "$CONFIG_RTL8676" = "y" -o "$CONFIG_RTL8676S" = "y" ]; then
+	comment 'RTL8676/RTL8676S Platform'
+	bool 'RTL8367B Support' CONFIG_EXTS_RTL8367B
+	bool 'RTL8211E Support' CONFIG_EXTS_RTL8211E
+fi
+if [ "$CONFIG_RTL8685" = "y" ]; then
+	comment 'RTL8685/RTL8685P Platform'
+	bool 'RTL8214 Series Support' CONFIG_EXTS_RTL8214
+fi
+if [ "$CONFIG_RTL8685S" = "y" -o "$CONFIG_RTL8685SB" = "y" ]; then
+	comment 'Not Support'
+fi
+endmenu
+
+mainmenu_option next_comment
+comment 'Frequency configuration'
+
+if [ "$CONFIG_RTL8685" = "y" -o "$CONFIG_RTL8685S" = "y" -o "$CONFIG_RTL8685SB" = "y" ]; then
+	bool 'Software Overwrite Freq.' CONFIG_SOFTWARE_OVERWRITE_FREQ n
+	if [ "$CONFIG_SOFTWARE_OVERWRITE_FREQ" = "n" ]; then
+		if [ "$CONFIG_FPGA_RTL8685SB" = "y" ]; then
+			comment 'CPU Frequency 70MHz'
+			comment 'DSP Frequency 50MHz'
+			comment 'LX Frequency 25MHz'
+		else
+			comment 'CPU Frequency 500MHz'
+			comment 'LX Frequency 200MHz'			
+		fi
+		int 'Memory Clock in MHz (Board Strapping pin setting)' CONFIG_MEMCLK_MHZ 100
+		if [ "$CONFIG_FPGA_RTL8685SB" = "y" ]; then
+			define_int CONFIG_CPUCLK_MHZ 70
+			define_int CONFIG_DSPCLK_MHZ 50
+			define_int CONFIG_LXBUS_MHZ 25
+		else
+			define_int CONFIG_CPUCLK_MHZ 500
+			define_int CONFIG_LXBUS_MHZ 200
+		fi
+	else
+		#bool 'Env. Variable Decide' CONFIG_SOFTWARE_FREQUENCY_ENV_DECIDE n
+		define_bool CONFIG_SOFTWARE_FREQUENCY_ENV_DECIDE n
+		if [ "$CONFIG_SOFTWARE_FREQUENCY_ENV_DECIDE" = "n" ]; then
+			
+			hex  'System PLL Control Register(0xb8000200)' CONFIG_SYS_PLL_CTRL 0x00000000
+			hex  'MCKG FREQ. DIV Register(0xb8000224)' CONFIG_MCKG_FREQ_DIV 0x00000000
+			hex	 'LX PLL Sel Register(0xb8000228)' CONFIG_LX_PLL_SEL 0x00000008
+			hex	 'CMU IP Mask Register0(0xb8000300)' CONFIG_SYS_CMU_IP_MASK0 0x00000000
+			hex	 'CMU IP Mask Register1(0xb8000304)' CONFIG_SYS_CMU_IP_MASK1 0x00000000
+			hex	 'CMU Control Register(0xb8000308)' CONFIG_SYS_CMU_CTRL 0x03ffff00
+			hex	 'CMU Sleep Index Register(0xb800030c)' CONFIG_SYS_CMU_SLP_IDX 0x00000000
+			#int 'CPU Frequency in MHz' CONFIG_CPUCLK_MHZ 500
+			#int 'DSP Frequency in MHz' CONFIG_DSPCLK_MHZ 500
+			#int 'Memory Frequency in MHz' CONFIG_MEMCLK_MHZ 100
+			#bool 'Low freq. setting' CONFIG_LOW_FREQ_SETTING n
+			#if [ "$CONFIG_LOW_FREQ_SETTING" = "n" ]; then
+			#	comment 'CPU Frequency 675 MHz'
+				#comment 'DSP Frequency 550 MHz'
+				#comment 'MEM Frequency 300 MHz'
+			#	define_int CONFIG_CPUCLK_MHZ 675
+				#define_int CONFIG_DSPCLK_MHZ 550
+				#define_int CONFIG_MEMCLK_MHZ 300
+			#else
+			#	comment 'CPU Frequency 350 MHz'
+				#comment 'DSP Frequency 250 MHz'
+			#	comment 'MEM Frequency 200 MHz'
+			#	define_int CONFIG_CPUCLK_MHZ 350
+				#define_int CONFIG_DSPCLK_MHZ 500
+			#	define_int CONFIG_MEMCLK_MHZ 200
+			#fi
+		fi
+	fi
+else
+if [ "$CONFIG_RTL8676" = "y" ]; then
+	choice 'RAM Speed'\
+		"AUTO_Detect CONFIG_RAM_AUTO \
+		 133Mhz CONFIG_RAM_133 \
+		 166Mhz CONFIG_RAM_166" 166Mhz
+else
+	choice 'RAM Speed'\
+		"AUTO_Detect CONFIG_RAM_AUTO \
+		 150Mhz CONFIG_RAM_150 \
+		 175Mhz CONFIG_RAM_175" 175Mhz
+fi
+fi
+
+endmenu
+
+mainmenu_option next_comment
+comment 'Memory configuration'
+
+if [ "$CONFIG_RTL8685" = "y" -o "$CONFIG_RTL8685S" = "y" -o "$CONFIG_RTL8685SB" = "y" ]; then
+	comment 'DRAM Configuration'
+	mainmenu_option next_comment
+	comment 'Support DRAM Type'
+		bool 'DRAM Type Auto Detection' CONFIG_DRAM_AUTO_TYPES n
+		if [ "$CONFIG_DRAM_AUTO_TYPES" = "n" ]; then
+			comment 'Select DRAM Type'
+			bool 'Support DDR1' CONFIG_DDR1_USAGE
+			bool 'Support DDR2' CONFIG_DDR2_USAGE
+			bool 'Support DDR3' CONFIG_DDR3_USAGE
+		else
+			define_bool CONFIG_DDR2_USAGE y
+			define_bool CONFIG_DDR3_USAGE y
+		fi
+	endmenu
+	
+	mainmenu_option next_comment
+	comment 'DRAM Parameters Setting'
+		bool 'DRAM Parameters Auto Setting ' CONFIG_DRAM_AUTO_PARAMETERS n
+		if [ "$CONFIG_DRAM_AUTO_PARAMETERS" = "n" ]; then
+			comment 'Configurate DRAM parameters'
+			int 'Prefered TX Delay' CONFIG_MEMCTL_TX_DELAY 0
+			int 'Prefered CLKM Delay' CONFIG_MEMCTL_CLKM_DELAY 0
+			int 'Prefered CLKM90 Delay' CONFIG_MEMCTL_CLKM90_DELAY 0
+			choice 'Prefered Memctl ODT Value' \
+				"24ohm CONFIG_MEMCTL_ODT_VALUE_24 \
+				 25ohm CONFIG_MEMCTL_ODT_VALUE_25 \
+				 30ohm CONFIG_MEMCTL_ODT_VALUE_30 \
+				 40ohm CONFIG_MEMCTL_ODT_VALUE_40 \
+				 50ohm CONFIG_MEMCTL_ODT_VALUE_50 \
+				 60ohm CONFIG_MEMCTL_ODT_VALUE_60 \
+				 75ohm CONFIG_MEMCTL_ODT_VALUE_75 \
+				 80ohm CONFIG_MEMCTL_ODT_VALUE_80 \
+				 100ohm CONFIG_MEMCTL_ODT_VALUE_100 \
+				 150hm CONFIG_MEMCTL_ODT_VALUE_150 \
+				 160hm CONFIG_MEMCTL_ODT_VALUE_160 \
+				 200ohm CONFIG_MEMCTL_ODT_VALUE_200" 75ohm
+			choice 'Prefered Memctl OCD Value' \
+				"48ohm CONFIG_MEMCTL_OCD_VALUE_48 \
+				 50ohm CONFIG_MEMCTL_OCD_VALUE_50 \
+				 60ohm CONFIG_MEMCTL_OCD_VALUE_60 \
+				 80ohm CONFIG_MEMCTL_OCD_VALUE_80 \
+				 100ohm CONFIG_MEMCTL_OCD_VALUE_100 \
+				 120ohm CONFIG_MEMCTL_OCD_VALUE_120 \
+				 150ohm CONFIG_MEMCTL_OCD_VALUE_150 \
+				 160ohm CONFIG_MEMCTL_OCD_VALUE_160 \
+				 200ohm CONFIG_MEMCTL_OCD_VALUE_200 \
+				 300hm CONFIG_MEMCTL_OCD_VALUE_300 \
+				 320hm CONFIG_MEMCTL_OCD_VALUE_320 \
+				 400ohm CONFIG_MEMCTL_OCD_VALUE_400" 60ohm
+
+			bool 'Memctl Half Clock Enable ' CONFIG_HALF_CLK_ENABLE n
+			bool 'Memctl Data Buffer Mask'	CONFIG_DATA_BUF_MASK y
+				
+			choice 'Prefered DRAM Diving Strength' \
+				 "Normal CONFIG_DRAM_FULL_DRIV_STRENGTH \
+				 Reduce CONFIG_DRAM_REDUCE_DRIV_STRENGTH" Normal
+			
+			if [ "$CONFIG_DDR2_USAGE" = "y" ]; then
+				choice 'Prefered DDR2 SDRAM ODT Value' \
+					"Disable CONFIG_DDR2_DRAM_ODT_VALUE_0 \
+					 50ohm CONFIG_DDR2_DRAM_ODT_VALUE_50 \
+					 75ohm CONFIG_DDR2_DRAM_ODT_VALUE_75 \
+					 150ohm CONFIG_DDR2_DRAM_ODT_VALUE_150" 75ohm
+			fi
+
+			if [ "$CONFIG_DDR3_USAGE" = "y" ]; then
+				choice 'Prefered DDR3 SDRAM RTT WR Value' \
+					"Disable CONFIG_DDR3_DRAM_RTT_WR_VALUE_0 \
+					 60ohm CONFIG_DDR3_DRAM_RTT_WR_VALUE_60 \
+					 120ohm CONFIG_DDR3_DRAM_RTT_WR_VALUE_120" 120ohm
+
+				choice 'Prefered DDR3 SDRAM RTT NOM Value' \
+					"Disable CONFIG_DDR3_DRAM_RTT_NOM_VALUE_0 \
+					 40ohm CONFIG_DDR3_DRAM_RTT_NOM_VALUE_40 \
+					 60ohm CONFIG_DDR3_DRAM_RTT_NOM_VALUE_60 \
+					 120ohm CONFIG_DDR3_DRAM_RTT_NOM_VALUE_120" Disable
+			fi	
+		else
+			define_int CONFIG_MEMCTL_TX_DELAY 18
+			define_int CONFIG_MEMCTL_CLKM_DELAY 16
+			define_int CONFIG_MEMCTL_CLKM90_DELAY 0
+			define_bool CONFIG_MEMCTL_ODT_VALUE_150 y
+			define_bool CONFIG_MEMCTL_OCD_VALUE_50 y
+			define_bool CONFIG_HALF_CLK_ENABLE y
+			define_bool CONFIG_DATA_BUF_MASK y
+			define_bool CONFIG_DCACHE_WA_EN y
+			define_bool CONFIG_DRAM_REDUCE_DRIV_STRENGTH y
+			if [ "$CONFIG_DDR2_USAGE" = "y" ]; then
+				define_bool CONFIG_DDR2_DRAM_ODT_VALUE_150 y
+			fi
+			if [ "$CONFIG_DDR3_USAGE" = "y" ]; then
+				define_bool CONFIG_DDR3_DRAM_RTT_WR_VALUE_60 y
+				define_bool CONFIG_DDR3_DRAM_RTT_NOM_VALUE_60 y
+			fi	
+		fi	
+	endmenu
+	
+	mainmenu_option next_comment
+	comment 'DRAM Capacity Setting'
+		bool 'DRAM Capacity Auto Setting ' CONFIG_DRAM_AUTO_SIZE_DETECTION y
+		if [ "$CONFIG_DRAM_AUTO_SIZE_DETECTION" = "n" ]; then
+			comment 'Set DRAM Capacity'
+			choice 'Bus width'  \
+			"8bit CONFIG_DRAM_BUS_WIDTH_8BIT \
+			 16bit CONFIG_DRAM_BUS_WIDTH_16BIT"  16bit
+
+			choice 'Chip number'  \
+				"one CONFIG_DRAM_CHIP_NUM_ONE \
+				 two CONFIG_DRAM_CHIP_NUM_TWO"  one
+
+			choice 'Chip size'  \
+				"16MB CONFIG_ONE_DRAM_CHIP_SIZE_16MB \
+				 32MB CONFIG_ONE_DRAM_CHIP_SIZE_32MB \
+				 64MB CONFIG_ONE_DRAM_CHIP_SIZE_64MB \
+				128MB CONFIG_ONE_DRAM_CHIP_SIZE_128MB \
+				256MB CONFIG_ONE_DRAM_CHIP_SIZE_256MB \
+				512MB CONFIG_ONE_DRAM_CHIP_SIZE_512MB"  64MB		
+		fi	
+	endmenu
+			
+	bool 'Analog DLL Delay line ' CONFIG_ANALOG_DLL_DELAY_LINE y
+	#bool 'Auto DRAM Timing Setting' CONFIG_AUTO_DRAM_TIMING_SETTING n
+	bool 'Memctl Data Buffer Mask'  CONFIG_DATA_BUF_MASK y
+	bool 'Data Cache Write Allocation Enable' CONFIG_DCACHE_WA_EN y
+	
+	mainmenu_option next_comment
+	comment 'ZQ Calibration'
+		bool 'Auto ZQ calibration ' CONFIG_ZQ_AUTO_CALI y
+		if [ "$CONFIG_ZQ_AUTO_CALI" = "n" ]; then
+			comment 'ZQ Pad'
+			hex  'ZQ_PAD_CTL0' CONFIG_ZQ_PAD_CTL0 0x00200267
+			hex  'ZQ_PAD_CTL1' CONFIG_ZQ_PAD_CTL1 0x00200267
+			hex  'ZQ_PAD_CTL2' CONFIG_ZQ_PAD_CTL2 0x00200267
+			hex  'ZQ_PAD_CTL3' CONFIG_ZQ_PAD_CTL3 0x00200267
+			hex  'ZQ_PAD_CTL4' CONFIG_ZQ_PAD_CTL4 0x00010001
+			hex  'ZQ_PAD_CTL5' CONFIG_ZQ_PAD_CTL5 0x00010001
+			hex  'ZQ_PAD_CTL6' CONFIG_ZQ_PAD_CTL6 0x00200267
+			hex  'ZQ_PAD_CTL7' CONFIG_ZQ_PAD_CTL7 0x00200267
+			hex  'ZQ_PAD_CTL8' CONFIG_ZQ_PAD_CTL8 0x00200267
+			hex  'ZQ_PAD_CTL9' CONFIG_ZQ_PAD_CTL9 0x00200267
+			hex  'ZQ_PAD_CTL10' CONFIG_ZQ_PAD_CTL10 0x00010001
+			hex  'ZQ_PAD_CTL11' CONFIG_ZQ_PAD_CTL11 0x50000009			
+		fi	
+	endmenu
+	
+	mainmenu_option next_comment
+	comment 'DRAM Timing Setting'
+		bool 'DRAM Timing Auto Setting ' CONFIG_DRAM_AUTO_TIMING_SETTING y
+		if [ "$CONFIG_DRAM_AUTO_TIMING_SETTING" = "y" ]; then
+			define_int CONFIG_DRAM_WR_NS 15
+			define_int CONFIG_DRAM_RTP_NS 8
+			define_int CONFIG_DRAM_WTR_NS 9
+			define_int CONFIG_DRAM_REFI_NS 7800
+			define_int CONFIG_DRAM_RP_NS 15
+			define_int CONFIG_DRAM_RCD_NS 15
+			define_int CONFIG_DRAM_RRD_NS 10
+			define_int CONFIG_DRAM_FAWG_NS 50
+			define_int CONFIG_DRAM_RFC_NS 128
+			define_int CONFIG_DRAM_RAS_NS 45
+		else
+			comment 'Select DRAM Timing'
+			hex 'DTR0' CONFIG_DRAM_DTR0 0x55488b00
+			hex 'DTR1' CONFIG_DRAM_DTR1 0x06060313
+			hex 'DTR2' CONFIG_DRAM_DTR2 0x04321000
+			comment 'Set Checking Rule'
+			int '  tWR(ns)' CONFIG_DRAM_WR_NS 15
+			int '  tRTP(ns)' CONFIG_DRAM_RTP_NS 8
+			int '  tWTR(ns)' CONFIG_DRAM_WTR_NS 8
+			int '  tREFI(ns)' CONFIG_DRAM_REFI_NS 6400
+			int '  tRP(ns)' CONFIG_DRAM_RP_NS 15
+			int '  tRCD(ns)' CONFIG_DRAM_RCD_NS 15
+			int '  tRRD(ns)' CONFIG_DRAM_RRD_NS 10
+			int '  tFAWG(ns)' CONFIG_DRAM_FAWG_NS 50
+			int '  tRFC(ns)' CONFIG_DRAM_RFC_NS 328
+			int '  tRAS(ns)' CONFIG_DRAM_RAS_NS 45
+		fi	
+	endmenu	
+				 
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_24" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x7e
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_25" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x3e
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_30" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x7c
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_40" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x30
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_50" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x31
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_60" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x20
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_75" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x21
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_80" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x0a
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_100" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x19
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_150" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x11
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_160" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x48
+	fi
+	if [ "$CONFIG_MEMCTL_ODT_VALUE_200" = "y" ]; then
+		define_hex CONFIG_MEMCTL_ODT_VALUE 0x49
+	fi
+
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_48" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x7e
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_50" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x3e
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_60" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x7c
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_80" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x30
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_100" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x31
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_120" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x20
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_150" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x21
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_160" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x0a
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_200" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x19
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_300" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x11
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_320" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x48
+	fi
+	if [ "$CONFIG_MEMCTL_OCD_VALUE_400" = "y" ]; then
+		define_hex CONFIG_MEMCTL_OCD_VALUE 0x49
+	fi
+
+	if [ "$CONFIG_DDR2_DRAM_ODT_VALUE_0" = "y" ]; then
+		define_int CONFIG_DDR2_DRAM_ODT_VALUE 0
+	fi
+	if [ "$CONFIG_DDR2_DRAM_ODT_VALUE_50" = "y" ]; then
+		define_int CONFIG_DDR2_DRAM_ODT_VALUE 50
+	fi
+	if [ "$CONFIG_DDR2_DRAM_ODT_VALUE_75" = "y" ]; then
+		define_int CONFIG_DDR2_DRAM_ODT_VALUE 75
+	fi
+	if [ "$CONFIG_DDR2_DRAM_ODT_VALUE_150" = "y" ]; then
+		define_int CONFIG_DDR2_DRAM_ODT_VALUE 150
+	fi
+
+	if [ "$CONFIG_DDR3_DRAM_RTT_WR_VALUE_0" = "y" ]; then
+		define_int CONFIG_DDR3_DRAM_RTT_WR_VALUE 0
+	fi
+	if [ "$CONFIG_DDR3_DRAM_RTT_WR_VALUE_60" = "y" ]; then
+		define_int CONFIG_DDR3_DRAM_RTT_WR_VALUE 60
+	fi
+	if [ "$CONFIG_DDR3_DRAM_RTT_WR_VALUE_120" = "y" ]; then
+		define_int CONFIG_DDR3_DRAM_RTT_WR_VALUE 120
+	fi
+
+	if [ "$CONFIG_DDR3_DRAM_RTT_NOM_VALUE_0" = "y" ]; then
+		define_int CONFIG_DDR3_DRAM_RTT_NOM_VALUE 0
+	fi
+	if [ "$CONFIG_DDR3_DRAM_RTT_NOM_VALUE_40" = "y" ]; then
+		define_int CONFIG_DDR3_DRAM_RTT_NOM_VALUE 40
+	fi
+	if [ "$CONFIG_DDR3_DRAM_RTT_NOM_VALUE_60" = "y" ]; then
+		define_int CONFIG_DDR3_DRAM_RTT_NOM_VALUE 60
+	fi
+	if [ "$CONFIG_DDR3_DRAM_RTT_NOM_VALUE_120" = "y" ]; then
+		define_int CONFIG_DDR3_DRAM_RTT_NOM_VALUE 120
+	fi
+
+	if [ "$CONFIG_DRAM_REDUCE_DRIV_STRENGTH" = "y" ]; then
+		define_int CONFIG_PREFERED_DRAM_DRIV_STRENGTH 0
+	else
+		define_int CONFIG_PREFERED_DRAM_DRIV_STRENGTH 1
+	fi
+
+	if [ "$CONFIG_ONE_DRAM_CHIP_SIZE_16MB" = "y" ]; then
+		define_hex CONFIG_ONE_DRAM_CHIP_SIZE 0x1000000
+	fi
+	if [ "$CONFIG_ONE_DRAM_CHIP_SIZE_32MB" = "y" ]; then
+		define_hex CONFIG_ONE_DRAM_CHIP_SIZE 0x2000000
+	fi
+	if [ "$CONFIG_ONE_DRAM_CHIP_SIZE_64MB" = "y" ]; then
+		define_hex CONFIG_ONE_DRAM_CHIP_SIZE 0x4000000
+	fi
+	if [ "$CONFIG_ONE_DRAM_CHIP_SIZE_128MB" = "y" ]; then
+		define_hex CONFIG_ONE_DRAM_CHIP_SIZE 0x8000000
+	fi
+	if [ "$CONFIG_ONE_DRAM_CHIP_SIZE_256MB" = "y" ]; then
+		define_hex CONFIG_ONE_DRAM_CHIP_SIZE 0x10000000
+	fi
+	if [ "$CONFIG_ONE_DRAM_CHIP_SIZE_512MB" = "y" ]; then
+		define_hex CONFIG_ONE_DRAM_CHIP_SIZE 0x20000000
+	fi
+	
+else
+	choice 'Support 4 or 8 banks for DDR2 ' \
+		"4_banks CONFIG_DDR2_4banks \
+		 8_banks CONFIG_DDR2_8banks " 4_banks
+fi
+
+endmenu
+
+mainmenu_option next_comment
+comment 'Engineer Option'
+
+comment 'General Options'
+bool 'MAC0 Loopback Calibration' CONFIG_MAC0_LBK
+bool 'GDMA Scan' CONFIG_GDMA_SCAN
+bool 'PCIe Basic Host Function' CONFIG_PCIE_HOST
+if [ "$CONFIG_RTL8685" = "y" -o "$CONFIG_RTL8685S" = "y" -o "$CONFIG_RTL8685SB" = "y" ]; then
+	comment 'RTL8685/RTL8685S Options'
+	bool 'RTL8685 Memory Controller Checking' CONFIG_RTL8685_MEMCTL_CHK
+	bool 'NFBI Slave Bootloader' CONFIG_NFBI_SLAVE
+fi
+if [ "$CONFIG_RTL8685S" = "y" ]; then
+	comment 'RTL8685S Only Options'
+	bool 'RTL8685S Dynamic Frequency Setting' CONFIG_RTL8685S_DYNAMIC_FREQ
+	bool 'FPGA 8685S' CONFIG_FPGA_8685S
+	bool 'New SPI Flash Controller' CONFIG_ADV_SPIC
+fi
+if [ "$CONFIG_RTL8685SB" = "y" ]; then
+	comment 'RTL8685SB Only Options'
+	bool 'Dynamic Frequency Setting' CONFIG_RTL8685S_DYNAMIC_FREQ
+	bool 'FPGA RTL8685SB' CONFIG_FPGA_RTL8685SB
+	if [ "$CONFIG_FPGA_RTL8685SB" = "y" ]; then
+		define_bool CONFIG_NO_HTTP_SERVER y
+		define_bool CONFIG_NO_NET y
+	fi
+	if [ "$CONFIG_RLX" = "y" ]; then
+		bool 'RTL8685SB Boot MIPS' CONFIG_BOOT_MIPS
+	fi
+	bool 'Stop In Bootloader Command LINE' CONFIG_BOOT_CMDLINE
+	bool 'MEM Test' CONFIG_MEM_TEST
+	bool 'BTG Test' CONFIG_BTG_TEST
+	if [ "$CONFIG_MIPS" = "y" ]; then
+		bool 'L2C CCA Mode Test' CONFIG_L2C_TEST
+		bool 'Enable JTAG for MIPS' CONFIG_JTAG_MIPS
+		bool 'MIPS Runs Loader' CONFIG_MIPS_RUNS_LOADER
+	fi
+	
+fi
+if [ "$CONFIG_RTL8676S" = "y" ]; then
+	bool 'MEM Test' CONFIG_MEM_TEST
+fi
+endmenu

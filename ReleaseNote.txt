@@ -1,0 +1,165 @@
+version :2.2.3a
+1. 8685/8685S: Enable DRAM dynamic FIFO buffer pointer reset
+2. Support RTL8367RB-VB
+
+version :2.2.3
+1. Revert to old SPI controller on RTL8685S
+2. Add support for 8685SB
+
+version :2.2.2
+1. RTL865S - support SPI NAND flash
+2. Add NOR/NAND support for 
+	NOR:GigaDevice25Q512M, S25FL256SAGMFI00
+	NAND: MX30LF1G08AC, A5U1G31AT
+3. Update SERDES phy parameters
+4. Update ZQ caliration procedure/DRAM detect squence
+5. Support frequency adjustment in RTL8685S
+6. Disable NIC before start application image to avoid potential DMA overwrite
+	
+version :2.2.1
+1. Support two SPI flash
+	-- Spansion S25FL256SAGMFI00
+	-- Gigadevice GD25Q256MC
+
+version :2.2.0
+1. First release
+
+version :2.2
+1. boot0412
+	-- Support RTL8676 series
+	-- Support RTL8685/RTL8685P
+	-- Support RTL8685S
+
+version :2.1
+1. boot0412
+	-- Support RTL8676 series
+	-- Support RTL8685
+	-- Support RTL8685P
+
+version :2.0
+1. boot0412 
+	-- Support RTL8676
+	-- Support RTL8676S
+
+00.01.11 (2014/08/26)
+============================================================================================
+1. Support RTL8685S
+2. Modify DRAM timing setting function
+3. Support SPANSION S25F256SA 32MByte SPI-NOR Flash
+4. Fix the problem that RTL8685(VerC) can't support DRAM 200MHz/250MHz
+
+00.01.10 (2013/02/05)
+=============================================================================================
+1. Add DQM Calibration method for DDR Calibration. 
+2. Set DRAM timing parameters by using lookup tables instead of using preconfigs
+3. Support RTL8685P, including Serdes function 
+4. Modify memory controller diagnostic function
+5. Add CMU feature, and consider different frequency combinations in CPU/DSP/LX0/LX1/LX2/LXP
+
+00.01.09
+============================================================================================
+
+00.01.08 (2013/01/17)
+============================================================================================
+1. Add compile support for RTL8676S 
+2. Add two support method for NAND BBT handling
+3. Add support for Winbond(W25Q) and Spansion(S25FL) SPI support
+4. Modify command line parser to use lookup table.
+
+00.01.07 (2012/08/08)
+============================================================================================
+1. Default LX clock to 200Mhz
+2. Correct OCP to 460Mhz (RTL8676)
+3. Fix DRAM size detection failed at 64MB
+4. Add Micron MT29F1G08A NAND support
+
+00.01.06 (2012/06/19)
+============================================================================================
+1. Add dual image support.
+2. Modify flash layout. 
+** NOTE ** This bootloader does NOT work with image prior to SDK 2.2.3
+
+00.01.05 (2012/05/21)
+============================================================================================
+1. Add support for 2Gbit DDR2
+
+00.01.04 (2012/02/09)
+============================================================================================
+1. Fix IMEM1 not disabled during bootup
+2. SDRAM calibration procedure update (Kevin 2012/01/06)
+3. Remove 25Mhz clockout
+4. Add reset and delay on RTL8367b initalization
+
+
+00.01.03 (2011/12/09)
+============================================================================================
+1. jim: support boot dual osk image, can be enabled by make menuconfig -> osk support -> dual image,
+2. Port multicast upgrade from 00.00.14c.
+3. Calibration procedure update (Kevin 2011/12/02)
+4. Modify NAND bootup procedure to match flash burner (skip BB instead of finding consecutive good blocks)
+5. Fix DRAM clock fixed at 133Mhz
+
+00.01.02 (2011/11/11)
+============================================================================================
+1. Add "Flash Type" in menuconfig for making SPI or Nand bootloader in one time.
+	1.1 IF you choose Nand flash, you can further choose page_size for 2K or 512 Bytes 
+	    which depends on Nand flash spec.
+	1.2 For making Nand flash bootloader: you will get "nboot_load.bin" in boot/  
+	    It insert image header in front of booter and loader
+	1.3 For making SPI flash bootloader: you will get "boot.bin" in boot/
+	     
+2. Change Nand Flash layout
+	2.1 We reserved 1MB size area in front of flash for bootloader.
+	2.2 We save booter in the first block of flash. 
+	2.3 We save bad block table (BBT) in the last two blocks in 1MB area.
+	2.4 We will find two continuous 64K size area to save loader 
+	    in the reset of reserved 1MB area except 2.2 and 2.3
+
+        ---------------------------------------- ^ 0xbfc0_0000^
+        |                                      | | (1-block)  |
+        |                 booter               | |            |
+        ---------------------------------------- V            |
+        |                 ....                 |              |
+        |                                      |              |
+        ---------------------------------------- ^            |
+        |                                      | |            |
+        |                loader0               | |  (64K)     |
+        |                                      | |            |
+        |                                      | |            | (1-MB)
+        ---------------------------------------- V            |
+        |                                      |              |
+        |                loader1               |              |
+        |                                      |              |
+        |                                      |              |
+        ----------------------------------------              |
+        |                 ....                 |              |
+        |                                      |              |
+        ---------------------------------------- ^            |
+        |                                      | | (1-block)  |
+        |                 BBT0                 | |            |
+        ---------------------------------------- V            |
+        |                                      |              |
+        |                 BBT1                 |              |
+        ----------------------------------------  0xbfd0_0000 V
+        |                                      |              
+        |                 vm.img               |              
+        |                                      |              
+        |                  ...                 |              
+
+3. boot/
+	3.1 Add head.s, marco.s, nboot.ld files.
+	3.2 Move some marcos from romInit.s into macro.s
+	3.3 Add NAND_Copy_2048 and NAND_Copy_512 in marco.s for nand flash
+	
+4. loader/
+	4.1 Divided read/write func. from original rtk_nand.c into rtk_nand_read.c and rtk_nand.c
+	4.2 ADD image parser code in the write_file() func for Nand flash.
+	
+5. Modify DDR calibration parameter  (cathy 20111005)
+6. Add CONFIG_RAM_AUTO
+7. Add CONFIG_DDR2_8Banks (support for 1Gbit)
+
+
+00.01.01 (2011/07/22)
+============================================================================================
+	- Based on 00.00.14c bootloader for RTL8676 project	

@@ -1,0 +1,108 @@
+=== EDB Session Log ===
+
+EDB Version: 2.8 (MIPS Arch)
+No program loaded.
+Reading commands from c:\epi\startice.cmd
+Processing register file: C:\Program Files\EPITools\edtm21\bin\mips/spaces.rd
+Processing register file: C:\Program Files\EPITools\edtm21\bin\mips/majic.rd
+Reading command history from: 'c:\epi\startedb.hst'
+Establishing communications with remote target via 192.168.1.10...
+Connection verified
+Target Reset
+edbice> //________________________________________________________
+edbice> // startice.cmd: Created by Majic Setup Wizard version 1.1
+edbice> // Creation Date: 10/21/2003 16:6:0
+edbice> // Processor type: LX4180   -v4180
+edbice> // Project: MyProject
+edbice> //________________________________________________________
+edbice> +Q
+Reading startice.cmd file
+Setting EDB options for RTL8672
+Notification from the target:
+Target power detected on RST
+Auto JTAG detection process detected 1 TAP
+JTAG connection established
+MMU with 32 TLBs detected, PageMask = 0xFFFFF000
+Setting Memory Region
+Setting Memory Controller Register
+Finished reading startice.cmd
+MON> 
+All breakpoints deleted
+Reading Symbol Information: I:\boot-e8b-to-qlxu\boot-e8b\loader\loader.elf
+Entry address set (pc): 80700000
+Break set at flashSectorErase:1048
+
+Break set at flashSectorErase:1049
+
+Break set at flashSectorErase:1046
+
+
+edbice> e sysInit
+{standard input}:sysInit:lui          gp,0x8072          
+edbice> lf ; e sysInit
+Target Reset
+loading I:\boot-e8b-to-qlxu\boot-e8b\loader\loader.elf
+ section .text    from 80700000 to 8071576f
+ section .data    from 80715770 to 80719c37
+ section .bss     from 80719c40 to 8077a55f
+Entry address set (pc): 80700000
+{standard input}:sysInit:lui          gp,0x8072          
+edbice> R
+running 'I:\boot-e8b-to-qlxu\boot-e8b\loader\loader.elf'
+Software breakpoint
+flashSectorErase:1046:                 printf("sectorAddr:0x%x\n", sectorAddr);
+edbice> c
+Software breakpoint
+flashSectorErase:1048:                 flashRegWrite16Bits(pVol, sectorAddr, 0x3030);
+edbice> s
+flashRegWrite16Bits:1113:      {
+edbice> S
+flashRegWrite16Bits:1115:          UINT32 flashBaseAddr = (pVol->baseAddress << 12);
+edbice> S
+flashRegWrite16Bits:1117:              int oldbank=getbank();
+edbice> S
+flashRegWrite16Bits:1120:                      if(addr < 0x400000) {
+edbice> s
+flashRegWrite16Bits:1124:                      else if(addr < 0x800000) {
+edbice> s
+s29gl128bank:680:      {
+edbice> S
+s29gl128bank:683:              printf("\r\nbank1\r\n");
+edbice> S
+s29gl128bank:684:              fbank = x;
+edbice> S
+s29gl128bank:686:              val = *(volatile int *)0xb8003508;
+edbice> S
+s29gl128bank:687:              *(volatile int *)0xb8003508 =  val|0x00000060; 
+edbice> S
+s29gl128bank:689:              val = *(volatile int *)0xb800350c; 
+edbice> S
+s29gl128bank:690:              switch (x){
+edbice> S
+s29gl128bank:692:                              *(volatile int *)0xb800350c |= (0x1 <<5);
+edbice> S
+s29gl128bank:694:                              break;
+edbice> S
+s29gl128bank:706:                              *(volatile int *)0xb800350c &= ~(0x1 <<6);
+edbice> S
+s29gl128bank:710:      }
+edbice> S
+flashRegWrite16Bits:1140:              if (addr-0xbfc00000 >= 0x400000)
+edbice> S
+flashRegWrite16Bits:1141:                      printf("addr:0x%x\r\n", addr);
+edbice> S
+flashRegWrite16Bits:1142:          DEBUG_PRINT(DEBUG_WRITE, ("Writing 0x%08x to 0x%08x\n\r", data, addr));
+edbice> S
+flashRegWrite16Bits:1143:              if (addr-0xbfc00000 >= 0x400000)
+edbice> S
+flashRegWrite16Bits:1144:                      printf("data:0x%x\r\n", data);
+edbice> S
+flashRegWrite16Bits:1146:          *((volatile UINT16*) addr) = data;
+edbice> S
+Emulation service failed--unable to set EJTAG probe enable
+Emulation service failed--unable to set EJTAG probe enable
+Dead target
+
+Re-establishing communications with remote target via 192.168.1.10...
+
+ERROR: Communications failure (remote not responding)
